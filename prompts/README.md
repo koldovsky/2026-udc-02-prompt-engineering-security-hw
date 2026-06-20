@@ -11,19 +11,28 @@ generic copies from the internet. This is Task A of the WS2 homework.
 4. Promote the most useful ones to commands (`.cursor/commands/` or
    `.claude/commands/`) so the whole team calls them with `/name`.
 
-## Index (build this out to 10+)
+## Index
 
 | Prompt | Category | Target | Command? |
 |--------|----------|--------|----------|
-| `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
+| `review-pr.md` | review | a file / diff | — (example provided) |
+| `code-review.md` | review | a file / diff | |
+| `add-tests.md` | tests | a module | |
+| `add-docs.md` | docs | file / module / project | |
+| `refactor-code.md` | refactor | a file / function | ✅ `/refactor-code` |
+| `debug-problem.md` | debug | a stack trace / failing test | |
+| `write-commit.md` | git | the staged diff | |
+| `explain-code.md` | understand | a file / function / flow | |
+| `optimize-performance.md` | performance | a hot path + metric | ✅ `/optimize-performance` |
+| `add-error-handling.md` | hardening | a file / function | |
+| `security-audit.md` | security | a file / diff | |
 
-Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
-prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full
-checklist.
+Covers the required set — **tests, review, docs, refactoring, debug** — plus
+five project-agnostic recipes (commits, explanation, performance, error
+handling, security). Each ships **both dialects** (markdown + XML); the OpenAI
+markdown block is left at the template default in the newer files. See
+`docs/walkthrough.md` for the full checklist and `docs/ab-experiment.md`
+for the baseline-vs-production results.
 
 ## Safety
 

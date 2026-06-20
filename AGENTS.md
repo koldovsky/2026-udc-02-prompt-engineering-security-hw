@@ -52,3 +52,23 @@ real secrets/PII.
 
 Never use `2>nul` / `>nul` (creates a literal `nul` file). Use `2>/dev/null` /
 `>/dev/null`. `nul` is gitignored as a net.
+
+## .aiignore
+
+Use `.aiignore` as a **documented convention** listing files agents should not touch. Never read/write/modify/commit/push any file from it.
+
+**Important — real-world limitations of ignore files in Claude Code:**
+
+- `.gitignore`, `.aiignore`, `.claudeignore` are **not officially enforced** by Claude Code. None of them prevent the agent from reading listed files at the API level.
+- The **only supported mechanism to block direct file reads** is the `permissions.deny` block in `~/.claude/settings.json`:
+  ```json
+  {
+    "permissions": {
+      "deny": [
+        "Read(./.env)"
+      ]
+    }
+  }
+  ```
+- `permissions.deny` **does not block indirect reads** via OS-level tools (`cat`, `echo`, `grep`, `head`, etc.) — those are shell commands, not agent tool calls, so the permission layer cannot intercept them.
+- The **only truly secure approach for secrets**: do not store them in local files (`.env`, config files) at all. Use a secrets manager or security provider (e.g., AWS Secrets Manager, HashiCorp Vault, Doppler, 1Password Secrets Automation) instead — the secret then never exists on disk where any tool could read it. 
