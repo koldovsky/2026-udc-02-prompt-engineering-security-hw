@@ -61,6 +61,7 @@ Use `.aiignore` as a **documented convention** listing files agents should not t
 
 - `.gitignore`, `.aiignore`, `.claudeignore` are **not officially enforced** by Claude Code. None of them prevent the agent from reading listed files at the API level.
 - The **only supported mechanism to block direct file reads** is the `permissions.deny` block in `~/.claude/settings.json`:
+
   ```json
   {
     "permissions": {
@@ -70,5 +71,6 @@ Use `.aiignore` as a **documented convention** listing files agents should not t
     }
   }
   ```
+
 - `permissions.deny` **does not block indirect reads** via OS-level tools (`cat`, `echo`, `grep`, `head`, etc.) — those are shell commands, not agent tool calls, so the permission layer cannot intercept them.
 - The **only truly secure approach for secrets**: do not store them in local files (`.env`, config files) at all. Use a secrets manager or security provider (e.g., AWS Secrets Manager, HashiCorp Vault, Doppler, 1Password Secrets Automation) instead — the secret then never exists on disk where any tool could read it. 

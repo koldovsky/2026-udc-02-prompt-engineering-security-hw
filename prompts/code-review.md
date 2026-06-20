@@ -12,7 +12,7 @@ risks — each with `file:line`, why it matters, and a minimal fix.
 
 ## Baseline (weak) — what you started from
 
-```
+```text
 review a code in this repo
 ```
 

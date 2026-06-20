@@ -11,7 +11,7 @@ describes what actually changed and why, not a vague one-liner.
 
 ## Baseline (weak) — what you started from
 
-```
+```text
 write a commit
 ```
 

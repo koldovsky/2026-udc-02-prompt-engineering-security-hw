@@ -11,7 +11,7 @@ ranked by severity, each with a concrete fix — without inventing scary noise.
 
 ## Baseline (weak) — what you started from
 
-```
+```text
 is it secure
 ```
 

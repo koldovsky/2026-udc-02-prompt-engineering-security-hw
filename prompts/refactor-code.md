@@ -11,7 +11,7 @@ while keeping the public API and observable behavior identical, proven by tests.
 
 ## Baseline (weak) — what you started from
 
-```
+```text
 clean this up
 ```
 

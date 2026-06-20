@@ -13,7 +13,7 @@ unvalidated `percent` in `applyDiscount`) instead of papering over them.
 
 ## Baseline (weak) — what you started from
 
-```
+```text
 help with tests for app
 ```
 

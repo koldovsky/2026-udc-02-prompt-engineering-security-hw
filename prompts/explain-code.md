@@ -11,7 +11,7 @@ at the right altitude — purpose first, then mechanics, then gotchas.
 
 ## Baseline (weak) — what you started from
 
-```
+```text
 explain this
 ```
 

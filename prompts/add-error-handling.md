@@ -11,7 +11,7 @@ validation and failure paths that surface problems clearly, without hiding them.
 
 ## Baseline (weak) — what you started from
 
-```
+```text
 handle errors
 ```
 

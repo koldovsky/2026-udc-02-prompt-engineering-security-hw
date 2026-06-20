@@ -11,7 +11,7 @@ cause with evidence, apply the minimal fix, and prove it with a test.
 
 ## Baseline (weak) — what you started from
 
-```
+```text
 fix it
 ```
 

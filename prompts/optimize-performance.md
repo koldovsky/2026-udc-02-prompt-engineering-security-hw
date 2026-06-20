@@ -11,7 +11,7 @@ measurement, not guesses, and preserve behavior — proven by tests and numbers.
 
 ## Baseline (weak) — what you started from
 
-```
+```text
 make it faster
 ```
 

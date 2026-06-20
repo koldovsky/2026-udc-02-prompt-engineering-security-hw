@@ -11,7 +11,7 @@ match the actual code — derived from real signatures and behavior, not invente
 
 ## Baseline (weak) — what you started from
 
-```
+```text
 document it
 ```
 
