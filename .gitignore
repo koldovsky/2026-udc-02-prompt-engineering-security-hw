@@ -10,7 +10,7 @@ out
 .next
 coverage
 
-# Env / secrets — NEVER commit these
+# Env / secrets - NEVER commit these
 .env
 .env.local
 .env*.local
@@ -31,3 +31,12 @@ yarn-error.log*
 
 # Windows Git Bash safety: prevent accidental NUL device files
 nul
+
+# BMad scaffolding & output - NOT part of the WS2 homework deliverables.
+# Keep the agent tooling out of the PR (homework artifacts live in
+# prompts/, docs/, and .cursor|.claude/commands/ only).
+/_bmad/
+/_bmad-output/
+.agents/
+.claude/skills/
+.github/agents/

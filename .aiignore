@@ -1,0 +1,26 @@
+# AI context ignore — keep noise and secrets out of the model's context window.
+# Synergy with security (Task B/C): excluding .env and dumps also prevents
+# accidental exfiltration of secrets through context.
+
+# Dependencies & build output (noise)
+node_modules/
+dist/
+build/
+out/
+coverage/
+
+# Secrets & env — never feed to a model
+.env
+.env.*
+*.pem
+
+# Agent tooling / generated artifacts (not source)
+_bmad/
+_bmad-output/
+.agents/
+.claude/skills/
+.github/agents/
+
+# Logs
+*.log
+

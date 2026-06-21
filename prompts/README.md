@@ -11,19 +11,26 @@ generic copies from the internet. This is Task A of the WS2 homework.
 4. Promote the most useful ones to commands (`.cursor/commands/` or
    `.claude/commands/`) so the whole team calls them with `/name`.
 
-## Index (build this out to 10+)
+## Index (11 proven prompts)
 
 | Prompt | Category | Target | Command? |
 |--------|----------|--------|----------|
-| `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
+| `review-pr.md` | review | `app/src/money.ts` | ✅ `/review-pr` |
+| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` · **dual dialect (md + XML)** |
+| `write-docs.md` | docs | `app/src/money.ts` | — |
+| `explain-code.md` | docs | `app/src/money.ts` | — |
+| `refactor-safe.md` | refactor | `app/src/money.ts` | — |
+| `add-validation.md` | refactor | `app/src/money.ts` | — |
+| `debug-stacktrace.md` | debug | a failing test / stack trace | — |
+| `fix-bug.md` | debug | `app/src/money.ts` (splitEvenly) | — |
+| `edge-case-hunter.md` | review | `app/src/money.ts` | — |
+| `perf-review.md` | review | `app/src/money.ts` | — |
+| `commit-message.md` | review | a staged diff | — |
 
-Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
-prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full
-checklist.
+Categories covered: **tests, review, docs, refactoring, debug** ✅.
+Dual-dialect entry (markdown + XML): **`add-tests.md`** ✅.
+Promoted commands (`.claude/commands/`): **`/add-tests`, `/review-pr`** ✅.
+See `docs/walkthrough.md` for the full checklist.
 
 ## Safety
 

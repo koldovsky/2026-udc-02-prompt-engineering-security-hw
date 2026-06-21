@@ -18,7 +18,9 @@ npm run typecheck
 
 ## On purpose
 
-`src/money.ts` has at least one **subtle correctness gap** (look at how
-`splitEvenly` handles remainder cents) and a couple of missing-validation spots.
-Don't hand-fix them — use a cookbook prompt (e.g. `/review` or `/add-tests`) to
-surface and fix them. That's the exercise.
+`src/money.ts` originally shipped with a **subtle correctness gap** (how
+`splitEvenly` handled remainder cents) and a couple of missing-validation spots.
+Those were surfaced and fixed by driving cookbook prompts (`/review-pr`,
+`/add-tests`, `fix-bug`, `add-validation`) rather than hand-editing — that was the
+exercise. The module now distributes remainder cents and validates its inputs
+(integer cents, positive split count, `percent` in `[0,100]`), covered by tests.
