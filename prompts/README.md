@@ -1,32 +1,32 @@
 # Prompt cookbook
 
-Reusable, **proven** prompts for this repo's routine — not chat history, not
-generic copies from the internet. This is Task A of the WS2 homework.
+Reusable, **proven** prompts for this repo's routine — Task A (WS2 homework).
 
 ## How to use
 
 1. Copy `_template.md` → `prompts/<verb-object>.md`.
-2. Fill the 6 blocks (Role / Goal / Context / Constraints / Acceptance / Output / Stop).
-3. **Run it against a real target** in `app/` and tick "Verified".
-4. Promote the most useful ones to commands (`.cursor/commands/` or
-   `.claude/commands/`) so the whole team calls them with `/name`.
+2. Fill Role / Goal / Context / Constraints / Acceptance / Output / Stop.
+3. Run against a real target in `app/` and tick Verified.
+4. Promote useful ones to `.cursor/commands/` for `/name`.
 
-## Index (build this out to 10+)
+## Index
 
 | Prompt | Category | Target | Command? |
 |--------|----------|--------|----------|
-| `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
+| `review-pr.md` | review | `app/src/money.ts` | `/review-pr` |
+| `add-tests.md` | tests | `app/src/money.ts` | `/add-tests` |
+| `add-validation-tests.md` | tests | `app/src/money.test.ts` | — |
+| `write-docs.md` | docs | `app/src/money.ts` | — |
+| `explain-module.md` | docs | `app/src/money.ts` | — |
+| `refactor-split-evenly.md` | refactor | `app/src/money.ts` | — |
+| `extract-constants.md` | refactor | `app/src/money.ts` | — |
+| `fix-apply-discount.md` | refactor | `app/src/money.ts` | — |
+| `debug-test-failure.md` | debug | vitest output | — |
+| `improve-parse-errors.md` | debug | `app/src/money.ts` | — |
 
-Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
-prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full
-checklist.
+Dual dialect (markdown + XML): `review-pr.md`, `add-tests.md`.
 
 ## Safety
 
-Prompts must contain **no real secrets or PII** — only placeholders and synthetic
-examples. If a prompt needs sensitive context, mask/synthesize it first
+No real secrets or PII — only placeholders. Mask sensitive context first
 (see `docs/sanitization-checklist.md`).
