@@ -1,32 +1,24 @@
 # Prompt cookbook
 
-Reusable, **proven** prompts for this repo's routine — not chat history, not
-generic copies from the internet. This is Task A of the WS2 homework.
+Reusable prompts for this repository. Each entry is scoped to a concrete task and can be reused with a real target in `app/`.
 
-## How to use
+## Index
 
-1. Copy `_template.md` → `prompts/<verb-object>.md`.
-2. Fill the 6 blocks (Role / Goal / Context / Constraints / Acceptance / Output / Stop).
-3. **Run it against a real target** in `app/` and tick "Verified".
-4. Promote the most useful ones to commands (`.cursor/commands/` or
-   `.claude/commands/`) so the whole team calls them with `/name`.
+| Prompt file | Purpose | Category | Verified status |
+|-------------|---------|----------|-----------------|
+| `_template.md` | Template for a new cookbook prompt | template | Draft |
+| `add-tests.md` | Add focused unit tests for a target file | tests | ✅ Verified |
+| `review-pr.md` | Review a file or diff for defects and security issues | review | ✅ Verified |
+| `debug.md` | Diagnose and fix a bug in a specific file | debug | ⏳ Pending |
+| `write-docs.md` | Draft or improve documentation | docs | ⏳ Pending |
+| `refactor.md` | Improve structure while preserving behavior | refactor | ⏳ Pending |
+| `explain-code.md` | Explain how a file or function works | explanation | ⏳ Pending |
+| `security-review.md` | Review a file for security risks | security | ⏳ Pending |
+| `optimize.md` | Improve performance or simplicity | optimization | ⏳ Pending |
+| `add-feature.md` | Add a focused feature to a module | feature | ⏳ Pending |
+| `generate-changelog.md` | Draft a concise changelog entry | changelog | ⏳ Pending |
 
-## Index (build this out to 10+)
+## Notes
 
-| Prompt | Category | Target | Command? |
-|--------|----------|--------|----------|
-| `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
-
-Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
-prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full
-checklist.
-
-## Safety
-
-Prompts must contain **no real secrets or PII** — only placeholders and synthetic
-examples. If a prompt needs sensitive context, mask/synthesize it first
-(see `docs/sanitization-checklist.md`).
+- Prefer running each prompt against a real target in `app/` before marking it verified.
+- Promote the most useful prompts to commands in `.claude/commands/` or `.cursor/commands/`.
