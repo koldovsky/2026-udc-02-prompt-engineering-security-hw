@@ -34,11 +34,21 @@ export function parseAmount(input: string): number {
  */
 export function splitEvenly(totalCents: number, n: number): number[] {
   const base = Math.floor(totalCents / n);
+  const remainder = totalCents % n;
   const shares = new Array(n).fill(base);
+
+  for (let i = 0; i < remainder; i += 1) {
+    shares[i] += 1;
+  }
+
   return shares;
 }
 
 /** Apply a percentage discount (0–100) to integer cents, rounding to nearest cent. */
 export function applyDiscount(cents: number, percent: number): number {
+  if (percent < 0 || percent > 100) {
+    throw new Error("Discount percent must be between 0 and 100");
+  }
+
   return Math.round(cents * (1 - percent / 100));
 }

@@ -1,0 +1,221 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+package.json
+README.md
+src/money.test.ts
+src/money.ts
+tsconfig.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="package.json">
+{
+  "name": "udc-ws02-app",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Tiny TS sample — a target for the prompt cookbook (tests/review/refactor/docs).",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}
+</file>
+
+<file path="src/money.test.ts">
+import { describe, it, expect } from "vitest";
+import { formatCents, parseAmount, splitEvenly, applyDiscount } from "./money.js";
+
+describe("formatCents", () => {
+  it("formats whole and fractional", () => {
+    expect(formatCents(42800)).toBe("428.00");
+    expect(formatCents(5)).toBe("0.05");
+  });
+
+  it("formats negative amounts with a leading minus sign", () => {
+    expect(formatCents(-1250)).toBe("-12.50");
+  });
+});
+
+describe("parseAmount", () => {
+  it("parses a plain decimal", () => {
+    expect(parseAmount("428.00")).toBe(42800);
+    expect(parseAmount("12")).toBe(1200);
+  });
+
+  it("rejects malformed input", () => {
+    expect(() => parseAmount("12.345")).toThrow("Not a valid amount: 12.345");
+    expect(() => parseAmount("abc")).toThrow("Not a valid amount: abc");
+  });
+});
+
+describe("splitEvenly", () => {
+  it("splits a cleanly divisible total", () => {
+    expect(splitEvenly(9000, 3)).toEqual([3000, 3000, 3000]);
+  });
+
+  it("distributes a remainder to the earlier shares", () => {
+    expect(splitEvenly(1000, 3)).toEqual([334, 333, 333]);
+  });
+});
+
+describe("applyDiscount", () => {
+  it("applies a simple discount", () => {
+    expect(applyDiscount(10000, 10)).toBe(9000);
+  });
+
+  it("rejects out-of-range percentages", () => {
+    expect(() => applyDiscount(10000, -1)).toThrow("Discount percent must be between 0 and 100");
+    expect(() => applyDiscount(10000, 101)).toThrow("Discount percent must be between 0 and 100");
+  });
+});
+</file>
+
+<file path="src/money.ts">
+/**
+ * Tiny money utilities — the target for the WS2 prompt cookbook.
+ *
+ * Amounts are handled in integer **cents** to avoid floating-point drift.
+ * This module is intentionally small and has at least one subtle bug for the
+ * "review" / "tests" cookbook prompts to find. Do not "pre-fix" it by hand —
+ * the homework is to drive the fix with a good prompt.
+ */
+
+/** Format integer cents as a human string, e.g. 42800 -> "428.00". */
+export function formatCents(cents: number): string {
+  const sign = cents < 0 ? "-" : "";
+  const abs = Math.abs(cents);
+  const whole = Math.floor(abs / 100);
+  const frac = abs % 100;
+  return `${sign}${whole}.${String(frac).padStart(2, "0")}`;
+}
+
+/** Parse a "428.00" / "428" string into integer cents. Throws on garbage. */
+export function parseAmount(input: string): number {
+  const trimmed = input.trim();
+  const match = /^(-?)(\d+)(?:\.(\d{1,2}))?$/.exec(trimmed);
+  if (!match) throw new Error(`Not a valid amount: ${input}`);
+  const [, sign, whole, frac = "0"] = match;
+  const cents = Number(whole) * 100 + Number(frac.padEnd(2, "0"));
+  return sign === "-" ? -cents : cents;
+}
+
+/**
+ * Split a total (in cents) evenly across `n` people.
+ * Returns an array of `n` integer-cent shares.
+ *
+ * NOTE: there is a known correctness gap here around the remainder cents.
+ */
+export function splitEvenly(totalCents: number, n: number): number[] {
+  const base = Math.floor(totalCents / n);
+  const remainder = totalCents % n;
+  const shares = new Array(n).fill(base);
+
+  for (let i = 0; i < remainder; i += 1) {
+    shares[i] += 1;
+  }
+
+  return shares;
+}
+
+/** Apply a percentage discount (0–100) to integer cents, rounding to nearest cent. */
+export function applyDiscount(cents: number, percent: number): number {
+  if (percent < 0 || percent > 100) {
+    throw new Error("Discount percent must be between 0 and 100");
+  }
+
+  return Math.round(cents * (1 - percent / 100));
+}
+</file>
+
+<file path="tsconfig.json">
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": ["vitest/globals"]
+  },
+  "include": ["src"]
+}
+</file>
+
+<file path="README.md">
+# app — cookbook target
+
+A tiny TypeScript module used as a **real target** for your prompt cookbook
+(Task A): tests, review, refactor, docs, debug prompts all point here.
+
+```bash
+cd app
+npm install
+npm test          # vitest — smoke tests pass
+npm run typecheck
+```
+
+## What's inside
+
+- `src/money.ts` — integer-cent money helpers (`formatCents`, `parseAmount`,
+  `splitEvenly`, `applyDiscount`).
+- `src/money.test.ts` — minimal smoke tests that pass.
+
+## On purpose
+
+`src/money.ts` has at least one **subtle correctness gap** (look at how
+`splitEvenly` handles remainder cents) and a couple of missing-validation spots.
+Don't hand-fix them — use a cookbook prompt (e.g. `/review` or `/add-tests`) to
+surface and fix them. That's the exercise.
+</file>
+
+</files>
