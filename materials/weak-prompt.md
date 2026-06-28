@@ -7,7 +7,7 @@ watch the agent guess at scope, stack, and "done".
 допоможи з тестами для app
 ```
 
-(English equivalent: `help with tests for app`)
+(English equivalent: `)`help with tests for app
 
 ## Why it's weak
 
@@ -19,7 +19,11 @@ watch the agent guess at scope, stack, and "done".
 
 ## Your job (Task A)
 
-Rewrite this into a structured prompt in `prompts/add-tests.md` using
-`prompts/_template.md`, point it at `app/src/money.ts`, run it, and confirm the
+Rewrite "help with tests for app" prompt into a structured prompt in `prompts/add-tests.md` using
+`prompts/_template.md`, point it at `app/src/money.ts`
+
+
+
+, run it, and confirm the
 agent stays in scope and `cd app && npm test` is green. Then add the other
 cookbook prompts (review, docs, refactor, debug).

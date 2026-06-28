@@ -1,5 +1,5 @@
 ---
-name: review-pr
+name: review
 description: Adversarial, security-aware review of a diff or a file. Use before merge.
 version: 1
 ---
