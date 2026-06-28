@@ -11,19 +11,26 @@ generic copies from the internet. This is Task A of the WS2 homework.
 4. Promote the most useful ones to commands (`.cursor/commands/` or
    `.claude/commands/`) so the whole team calls them with `/name`.
 
-## Index (build this out to 10+)
+## Index (11 prompts)
 
 | Prompt | Category | Target | Command? |
 |--------|----------|--------|----------|
-| `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
+| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` |
+| `review-pr.md` | review | `app/src/money.ts` | ✅ `/review` |
+| `write-docs.md` | docs | `app/src/money.ts` | — |
+| `refactor.md` | refactor | `app/src/money.ts` | — |
+| `debug.md` | debug | a failing test / stack trace | ✅ `/debug` |
+| `explain-code.md` | docs / onboarding | `app/src/money.ts` | — |
+| `edge-cases.md` | tests / analysis | `app/src/money.ts` | — |
+| `harden-validation.md` | refactor / safety | `applyDiscount` in `money.ts` | — |
+| `commit-message.md` | git | staged diff | — |
+| `pr-description.md` | review / docs | a branch diff | — |
+| `name-things.md` | refactor | `app/src/money.ts` | — |
 
-Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
-prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full
-checklist.
+Covers all required categories: **tests, review, docs, refactoring, debug**.
+**Two dialects (markdown + XML):** `add-tests.md` and `review-pr.md` each carry
+both. **Promoted commands** live in `.claude/commands/`: `/add-tests`, `/review`,
+`/debug`. See `docs/walkthrough.md` for the full checklist.
 
 ## Safety
 
