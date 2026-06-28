@@ -15,9 +15,16 @@
       "Read(./**/credentials.json)",
       "Read(./**/.aws/credentials)",
       "Read(./**/kubeconfig)",
+      "Read(./**/.kube/config)",
       "Read(./**/*KEY*)",
+      "Read(./**/*key*)",
+      "Read(./**/*Key*)",
       "Read(./**/*TOKEN*)",
-      "Read(./**/*SECRET*)"
+      "Read(./**/*token*)",
+      "Read(./**/*Token*)",
+      "Read(./**/*SECRET*)",
+      "Read(./**/*secret*)",
+      "Read(./**/*Secret*)"
     ]
   }
 }
