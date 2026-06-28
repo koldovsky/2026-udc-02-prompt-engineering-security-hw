@@ -11,19 +11,36 @@ generic copies from the internet. This is Task A of the WS2 homework.
 4. Promote the most useful ones to commands (`.cursor/commands/` or
    `.claude/commands/`) so the whole team calls them with `/name`.
 
-## Index (build this out to 10+)
+## Index (10+ proven prompts)
 
-| Prompt | Category | Target | Command? |
-|--------|----------|--------|----------|
-| `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
+| Prompt | Category | Target | Dialects | Command? |
+|--------|----------|--------|----------|----------|
+| `review-pr.md` | review | `app/src/money.ts` | md + XML | ✅ `/review` |
+| `add-tests.md` | tests | `app/src/money.ts` | md + XML | ✅ `/add-tests` |
+| `write-docs.md` | docs | `app/src/money.ts` | md | — |
+| `refactor.md` | refactor | `app/src/money.ts` | md | — |
+| `debug.md` | debug | failing test / stack trace | md | — |
+| `fix-bug.md` | bugfix | `app/src/money.ts` (splitEvenly) | md | — |
+| `explain-code.md` | explain | `app/src/money.ts` | md | — |
+| `add-types.md` | types/validation | `app/src/money.ts` | md | — |
+| `commit-message.md` | git | staged diff | md | — |
+| `name-things.md` | naming | `app/src/money.ts` | md | — |
+| `security-review.md` | security | `app/src/money.ts` | md | — |
 
-Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
-prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full
-checklist.
+**Coverage:** tests, review, docs, refactoring, debug (+ bugfix, types, naming,
+git, security). **Two-dialect prompts:** `add-tests.md` and `review-pr.md` include
+both a markdown (GPT) and an XML (Claude) variant.
+
+## Commands
+
+Promoted to `.claude/commands/` so the whole team calls them with `/name`:
+
+| Command | From | Usage |
+|---------|------|-------|
+| `/add-tests` | `add-tests.md` | `/add-tests app/src/money.ts` |
+| `/review` | `review-pr.md` | `/review app/src/money.ts` |
+
+See `docs/walkthrough.md` for the full checklist.
 
 ## Safety
 

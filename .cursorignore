@@ -21,3 +21,10 @@ yarn.lock
 # OS / editor junk
 .DS_Store
 nul
+
+# Generated context dumps & coverage (noise, never needed for reasoning)
+repomix-output.*
+coverage/
+
+# Private keys (never feed to an agent)
+*.pem
