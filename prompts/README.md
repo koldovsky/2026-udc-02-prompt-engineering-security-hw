@@ -11,19 +11,24 @@ generic copies from the internet. This is Task A of the WS2 homework.
 4. Promote the most useful ones to commands (`.cursor/commands/` or
    `.claude/commands/`) so the whole team calls them with `/name`.
 
-## Index (build this out to 10+)
+## Index
 
-| Prompt | Category | Target | Command? |
+| Prompt | Category | Target | Dialects |
 |--------|----------|--------|----------|
-| `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
+| `review-pr.md` | review | `app/src/money.ts` | markdown + XML |
+| `add-tests.md` | tests | `app/src/money.ts` | markdown + XML |
+| `write-docs.md` | docs | `app/src/money.ts` | markdown + XML |
+| `refactor-function.md` | refactor | `app/src/money.ts` | markdown + XML |
+| `debug-bug.md` | debug | `app/src/money.ts` | markdown + XML |
+| `fix-bug.md` | bug fix | `app/src/money.ts` | markdown + XML |
+| `explain-code.md` | explain | `app/src/money.ts` | markdown + XML |
+| `add-types.md` | types | `app/src/money.ts` | markdown + XML |
+| `generate-changelog.md` | changelog | `app/src/money.ts` | markdown + XML |
+| `security-audit.md` | security | `app/src/money.ts` | markdown + XML |
+| `add-input-validation.md` | validation | `app/src/money.ts` | markdown + XML |
+| `generate-pr-description.md` | PR workflow | git diff | markdown + XML |
 
-Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
-prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full
-checklist.
+All prompts include markdown (GPT) + XML (Claude) dialects. Verified checkboxes in each file track real runs against `app/`.
 
 ## Safety
 
