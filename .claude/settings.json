@@ -6,7 +6,15 @@
       "Read(./**/.env)",
       "Read(./**/.env.*)",
       "Read(./**/*.pem)",
-      "Read(./**/*.key)"
+      "Read(./**/*.key)",
+      "Read(./**/*.crt)",
+      "Read(./**/*.p12)",
+      "Read(./**/*.pfx)",
+      "Read(./**/id_rsa*)",
+      "Read(./**/id_ed25519*)",
+      "Read(./**/credentials.json)",
+      "Read(./**/.aws/credentials)",
+      "Read(./**/kubeconfig)"
     ]
   }
 }
