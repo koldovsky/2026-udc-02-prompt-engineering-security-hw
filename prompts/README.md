@@ -10,6 +10,7 @@ Reusable, **proven** prompts for team routine tasks. Each prompt is structured (
 4. Paste into your AI tool
 
 **Fastest way:** Use registered commands (`.claude/commands/`):
+
 ```bash
 /add-tests app/src/money.ts
 /review-pr app/src/money.ts
@@ -19,16 +20,16 @@ Reusable, **proven** prompts for team routine tasks. Each prompt is structured (
 
 | # | Prompt | Purpose | Tested? | Command? |
 |---|--------|---------|---------|----------|
-| 1 | [`add-tests.md`](./add-tests.md) | Comprehensive edge-case tests | ✅ 57 tests | `/add-tests` |
+| 1 | [`add-tests.md`](./add-tests.md) | Comprehensive edge-case tests | ✅ 59 tests | `/add-tests` |
 | 2 | [`review-pr.md`](./review-pr.md) | Adversarial code review | ✅ 2+ findings | `/review-pr` |
-| 3 | [`write-docs.md`](./write-docs.md) | JSDoc + README documentation | 📋 structured | — |
-| 4 | [`refactor.md`](./refactor.md) | Refactor for readability (no API changes) | 📋 structured | — |
-| 5 | [`debug.md`](./debug.md) | Diagnose failing tests & unexpected behavior | 📋 structured | — |
-| 6 | [`performance-audit.md`](./performance-audit.md) | Algorithmic complexity & bottleneck analysis | 📋 structured | — |
-| 7 | [`security-check.md`](./security-check.md) | Input validation, injection risks, unsafe patterns | 📋 structured | — |
-| 8 | [`explain-code.md`](./explain-code.md) | Explain module to junior developers | 📋 structured | — |
-| 9 | [`improve-types.md`](./improve-types.md) | Stricter TypeScript types & branded types | 📋 structured | — |
-| 10 | [`optimize-imports.md`](./optimize-imports.md) | Review imports, minimize bundle size | 📋 structured | — |
+| 3 | [`write-docs.md`](./write-docs.md) | JSDoc + README documentation | ⏳ not yet executed | — |
+| 4 | [`refactor.md`](./refactor.md) | Refactor for readability (no API changes) | ⏳ not yet executed | — |
+| 5 | [`debug.md`](./debug.md) | Diagnose failing tests & unexpected behavior | ⏳ not yet executed | — |
+| 6 | [`performance-audit.md`](./performance-audit.md) | Algorithmic complexity & bottleneck analysis | ⏳ not yet executed | — |
+| 7 | [`security-check.md`](./security-check.md) | Input validation, injection risks, unsafe patterns | ⏳ not yet executed | — |
+| 8 | [`explain-code.md`](./explain-code.md) | Explain module to junior developers | ⏳ not yet executed | — |
+| 9 | [`improve-types.md`](./improve-types.md) | Stricter TypeScript types & branded types | ⏳ not yet executed | — |
+| 10 | [`optimize-imports.md`](./optimize-imports.md) | Review imports, minimize bundle size | ⏳ not yet executed | — |
 
 ## How to use each prompt
 
@@ -103,9 +104,9 @@ Stop rules:
 
 ## Verified results
 
-- ✅ **add-tests:** 27 comprehensive tests added, all passing
-- ✅ **review-pr:** found remainder-cent bug + validation gap
-- 🟡 **others:** structure validated, ready to execute
+- ✅ **add-tests:** 59 total tests (comprehensive edge-case coverage), all passing
+- ✅ **review-pr:** found security gaps + validation issues
+- ⏳ **others (8 prompts):** structurally validated and ready, but not yet executed on `app/`
 
 ## Contributing
 

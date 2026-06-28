@@ -8,7 +8,7 @@ version: 1
 
 ## Baseline (weak)
 
-```
+```text
 покращи код в money.ts
 ```
 
@@ -21,7 +21,7 @@ Goal: Refactor `app/src/money.ts` to improve readability and reduce duplication 
 
 Context:
 - File: `app/src/money.ts` — 4 utility functions with some code patterns repeated
-- Tests: comprehensive test suite in `app/src/money.test.ts` (27 tests, all passing)
+- Tests: comprehensive test suite in `app/src/money.test.ts` (59 tests, all passing)
 - Constraints: Node 22, TypeScript, Vitest
 
 Constraints:
@@ -34,7 +34,7 @@ Constraints:
 Acceptance criteria:
 - Code is more readable (better variable names, clearer logic)
 - Code duplication reduced (e.g., repeated padding, formatting logic)
-- All 27 tests still pass
+- All 59 tests still pass
 - No behavior changes
 
 Output:
@@ -55,12 +55,12 @@ You are a senior TS developer. Refactor `app/src/money.ts` for readability and m
 </instructions>
 
 <context>
-File: `app/src/money.ts` — 4 utility functions for money handling in integer cents. Tests in `app/src/money.test.ts` (27 tests, all passing).
+File: `app/src/money.ts` — 4 utility functions for money handling in integer cents. Tests in `app/src/money.test.ts` (59 tests, all passing).
 </context>
 
 <constraints>
 - Public API identical (same function names, signatures, behavior)
-- All 27 tests must pass after refactoring
+- All 59 tests must pass after refactoring
 - No new dependencies; no new abstractions beyond what's needed
 - Do NOT fix splitEvenly remainder bug
 - Do NOT refactor test file
@@ -80,6 +80,6 @@ Full refactored `app/src/money.ts` + one-line improvement summary (e.g., "extrac
 
 ## Verified
 
-- [ ] All 27 tests pass after refactoring
+- [ ] All 59 tests pass after refactoring
 - [ ] Public API identical
 - [ ] Code is more readable

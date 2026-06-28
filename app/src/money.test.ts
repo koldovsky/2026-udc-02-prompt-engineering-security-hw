@@ -171,6 +171,14 @@ describe("parseAmount", () => {
     expect(parseAmount("1000000.00")).toBe(100000000);
     expect(parseAmount("-9999999.99")).toBe(-999999999);
   });
+
+  // Regression: runtime type check for non-string input
+  it("rejects non-string input in parseAmount", () => {
+    expect(() => parseAmount(null as any)).toThrow("parseAmount expects a string");
+    expect(() => parseAmount(undefined as any)).toThrow("parseAmount expects a string");
+    expect(() => parseAmount(12 as any)).toThrow("parseAmount expects a string");
+    expect(() => parseAmount({} as any)).toThrow("parseAmount expects a string");
+  });
 });
 
 describe("splitEvenly", () => {
@@ -303,6 +311,14 @@ describe("splitEvenly", () => {
         expect(extraCount).toBeGreaterThanOrEqual(0);
       }
     }
+  });
+
+  // Regression: validation of n parameter in splitEvenly
+  it("rejects invalid n values", () => {
+    expect(() => splitEvenly(cents(100), 0)).toThrow("splitEvenly: n must be a positive integer");
+    expect(() => splitEvenly(cents(100), -1)).toThrow("splitEvenly: n must be a positive integer");
+    expect(() => splitEvenly(cents(100), 1.5)).toThrow("splitEvenly: n must be a positive integer");
+    expect(() => splitEvenly(cents(100), NaN)).toThrow("splitEvenly: n must be a positive integer");
   });
 });
 

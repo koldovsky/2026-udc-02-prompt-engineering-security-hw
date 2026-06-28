@@ -8,7 +8,7 @@ version: 1
 
 ## Baseline (weak)
 
-```
+```text
 краще типізуй код
 ```
 
@@ -84,6 +84,6 @@ Modified `app/src/money.ts` with improved types + brief explanation (e.g., "adde
 ## Verified
 
 - [x] Branded types (Cents, Percent) introduced + type guards
-- [x] All tests pass (57 tests)
+- [x] All tests pass (59 tests)
 - [x] No behavior changes — only types (money.ts + money.test.ts)
 - [x] Common mistakes caught at compile time (Infinity, NaN, float, range checks)
