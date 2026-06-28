@@ -24,12 +24,12 @@ for the WS2 sanitization exercise. Do NOT treat as real PII/secrets. Your task
 - дата народження: **14.**.******
 - картка: **\<CARD_NUMBER>** (Visa, exp 04/**, CVV ***)
 - IBAN: **\<IBAN>**
-- баланс: ** *** 800.50 UAH**
+- баланс: **~800.50 UAH** (точна сума замаскована)
 - паспорт: **Ф* ****56**, РНОКПП (ІПН): **********78**
 
 ## Кроки відтворення (з production-логу)
 
-```
+```log
 2026-05-30 14:02:11 INFO  txn=TX-99812 account=UA90...789 amount=1000.00 fee=2.50
 2026-05-30 14:02:11 INFO  txn=TX-99812 fee applied twice -> total fee 5.00
 2026-05-30 14:02:12 DEBUG  db=postgres://payments:<SECRET_OUT_OF_BAND>/payments_prod

@@ -53,7 +53,7 @@ export function percent(value: number): Percent {
 
 /**
  * Format cents as a human-readable dollar string.
- * @param amount — the amount in cents (e.g., Cents value or raw number)
+ * @param amount — the amount in cents (must be a Cents value created with cents(...))
  * @returns formatted string with dollar sign omitted (e.g., "428.00", "-0.05")
  * @throws if amount is not an integer or not finite
  * @example
@@ -91,6 +91,9 @@ function padFrac(frac: number): string {
  * parseAmount("12.345")  // throws: "Not a valid amount" (too many decimals)
  */
 export function parseAmount(input: string): Cents {
+  if (typeof input !== 'string') {
+    throw new Error(`parseAmount expects a string, got ${typeof input}`);
+  }
   const trimmed = input.trim();
   const match = /^(-?)(\d+)(?:\.(\d{1,2}))?$/.exec(trimmed);
   if (!match) throw new Error(`Not a valid amount: ${input}`);
@@ -102,25 +105,37 @@ export function parseAmount(input: string): Cents {
 /**
  * Split a total evenly across `n` people.
  * Returns an array of `n` Cents shares. Remainder cents are distributed to the first shares.
- * **Invariant:** sum of shares always equals totalCents (no lost cents).
+ * **Invariant:** sum of shares always equals totalCents (no lost cents, preserves sign).
+ * **Note:** negative totalCents with large remainders may produce unexpected remainder distribution
+ * (this is a known trade-off in the current implementation — document carefully).
  * @param totalCents — the total amount in cents to split
  * @param n — the number of people to split across
  * @returns array of n Cents values (in order)
  * @example
  * splitEvenly(cents(9000), 3)   // [3000, 3000, 3000] (each $30.00)
  * splitEvenly(cents(1000), 3)   // [334, 333, 333] (remainder 1 cent goes to first)
- * splitEvenly(cents(-1000), 3)  // [-334, -333, -333] (negative amounts work)
+ * splitEvenly(cents(-1000), 3)  // [-334, -333, -333] (negative amounts work correctly)
  */
 export function splitEvenly(totalCents: Cents, n: number): Cents[] {
-  const base = Math.floor(totalCents / n);
-  const remainder = Math.abs(totalCents) % n;
-  const shares = new Array(n).fill(base);
-  // Distribute remainder cents to first `remainder` shares, respecting sign
-  const sign = totalCents < 0 ? -1 : 1;
-  for (let i = 0; i < remainder; i++) {
-    shares[i] += sign;
+  // Validate n: must be positive integer
+  if (!Number.isInteger(n) || n <= 0) {
+    throw new Error(`splitEvenly: n must be a positive integer, got ${n}`);
   }
-  return shares.map(cents);
+
+  // Work with absolute value, then apply sign at the end
+  const isNegative = totalCents < 0;
+  const absTotal = Math.abs(totalCents);
+  const base = Math.floor(absTotal / n);
+  const remainder = absTotal % n;
+
+  // Create shares: first `remainder` get (base + 1), the rest get base
+  const shares: number[] = new Array(n).fill(base);
+  for (let i = 0; i < remainder; i++) {
+    shares[i] += 1;
+  }
+
+  // Apply sign and convert to branded Cents
+  return shares.map(share => cents(isNegative ? -share : share));
 }
 
 /**
@@ -145,11 +160,4 @@ export function applyDiscount(amount: Cents, discount: Percent): Cents {
   }
   const result = Math.round(amount * (1 - discount / 100));
   return cents(result);
-}
-
-/** Validate that a value is finite; throw if not. */
-function validateFinite(value: number, name: string): void {
-  if (!Number.isFinite(value)) {
-    throw new Error(`${name} must be finite`);
-  }
 }

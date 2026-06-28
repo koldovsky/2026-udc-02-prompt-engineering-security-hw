@@ -3,65 +3,65 @@ import { formatCents, parseAmount, splitEvenly, applyDiscount, cents, percent } 
 
 describe("formatCents", () => {
   it("formats whole and fractional", () => {
-    expect(formatCents(42800)).toBe("428.00");
-    expect(formatCents(5)).toBe("0.05");
+    expect(formatCents(cents(42800))).toBe("428.00");
+    expect(formatCents(cents(5))).toBe("0.05");
   });
 
   it("formats zero", () => {
-    expect(formatCents(0)).toBe("0.00");
+    expect(formatCents(cents(0))).toBe("0.00");
   });
 
   it("zero-pads the fractional part", () => {
-    expect(formatCents(70)).toBe("0.70");
-    expect(formatCents(409)).toBe("4.09");
-    expect(formatCents(1)).toBe("0.01");
+    expect(formatCents(cents(70))).toBe("0.70");
+    expect(formatCents(cents(409))).toBe("4.09");
+    expect(formatCents(cents(1))).toBe("0.01");
   });
 
   it("handles negative amounts", () => {
-    expect(formatCents(-42800)).toBe("-428.00");
-    expect(formatCents(-5)).toBe("-0.05");
-    expect(formatCents(-1)).toBe("-0.01");
+    expect(formatCents(cents(-42800))).toBe("-428.00");
+    expect(formatCents(cents(-5))).toBe("-0.05");
+    expect(formatCents(cents(-1))).toBe("-0.01");
   });
 
   it("handles large numbers", () => {
-    expect(formatCents(999999999)).toBe("9999999.99");
-    expect(formatCents(1000000)).toBe("10000.00");
+    expect(formatCents(cents(999999999))).toBe("9999999.99");
+    expect(formatCents(cents(1000000))).toBe("10000.00");
   });
 
   // Edge case: negative zero (treated as zero in JS)
   it("formats negative zero as positive zero", () => {
-    expect(formatCents(-0)).toBe("0.00");
+    expect(formatCents(cents(-0))).toBe("0.00");
   });
 
   // Edge case: boundary amounts at 100-cent increments
   it("formats amounts at 100-cent boundaries correctly", () => {
-    expect(formatCents(99)).toBe("0.99"); // just under $1
-    expect(formatCents(100)).toBe("1.00"); // exactly $1
-    expect(formatCents(101)).toBe("1.01"); // just over $1
-    expect(formatCents(-99)).toBe("-0.99");
-    expect(formatCents(-100)).toBe("-1.00");
-    expect(formatCents(-101)).toBe("-1.01");
+    expect(formatCents(cents(99))).toBe("0.99"); // just under $1
+    expect(formatCents(cents(100))).toBe("1.00"); // exactly $1
+    expect(formatCents(cents(101))).toBe("1.01"); // just over $1
+    expect(formatCents(cents(-99))).toBe("-0.99");
+    expect(formatCents(cents(-100))).toBe("-1.00");
+    expect(formatCents(cents(-101))).toBe("-1.01");
   });
 
   // Edge case: very large negative numbers
   it("formats very large negative amounts", () => {
-    expect(formatCents(-999999999)).toBe("-9999999.99");
-    expect(formatCents(-1000000)).toBe("-10000.00");
+    expect(formatCents(cents(-999999999))).toBe("-9999999.99");
+    expect(formatCents(cents(-1000000))).toBe("-10000.00");
   });
 
   // Edge case: fractional parts with leading zeros
   it("formats fractional parts with leading zeros correctly", () => {
-    expect(formatCents(10)).toBe("0.10");
-    expect(formatCents(1)).toBe("0.01");
-    expect(formatCents(5)).toBe("0.05");
-    expect(formatCents(9)).toBe("0.09");
-    expect(formatCents(-10)).toBe("-0.10");
-    expect(formatCents(-1)).toBe("-0.01");
+    expect(formatCents(cents(10))).toBe("0.10");
+    expect(formatCents(cents(1))).toBe("0.01");
+    expect(formatCents(cents(5))).toBe("0.05");
+    expect(formatCents(cents(9))).toBe("0.09");
+    expect(formatCents(cents(-10))).toBe("-0.10");
+    expect(formatCents(cents(-1))).toBe("-0.01");
   });
 
   it("round-trips with parseAmount", () => {
     for (const c of [0, 1, 5, 70, 409, 42800, 1000000, -1, -5, -42800, 99, 100, 101, -99, -100, -101]) {
-      expect(parseAmount(formatCents(c))).toBe(c);
+      expect(parseAmount(formatCents(cents(c)))).toBe(c);
     }
   });
 
@@ -225,17 +225,19 @@ describe("splitEvenly", () => {
     expect(shares.reduce((a, b) => a + b, 0)).toBe(-9000);
   });
 
-  // Edge case: negative amounts with remainders (documents actual behavior including bugs)
-  it("distributes remainder cents for negative totals", () => {
-    const shares = splitEvenly(-1000, 3); // -10.00 / 3
-    // Implementation: floor(-1000/3)=-334, |remainder|=1, distributes -1 to first
-    // Bug: sum does NOT equal original total for negatives with remainder
-    expect(shares).toEqual([-335, -334, -334]);
-    expect(shares.reduce((a, b) => a + b, 0)).toBe(-1003);
+  // Edge case: negative amounts with remainders (invariant: sum = total)
+  it("distributes remainder cents for negative totals correctly", () => {
+    const shares = splitEvenly(cents(-1000), 3); // -10.00 / 3
+    // abs(-1000)=1000, base=333, remainder=1 → first gets 334, others get 333
+    // Apply negative sign: [-334, -333, -333]
+    expect(shares).toEqual([cents(-334), cents(-333), cents(-333)]);
+    expect(shares.reduce((a, b) => a + b, 0)).toBe(-1000); // Invariant: sum = total
 
-    const shares3 = splitEvenly(-10, 3); // -10 / 3, base=-4, remainder=1
-    expect(shares3).toEqual([-5, -4, -4]);
-    expect(shares3.reduce((a, b) => a + b, 0)).toBe(-13); // Bug: sum is not -10
+    const shares3 = splitEvenly(cents(-10), 3); // -10 / 3, base=3, remainder=1
+    // abs(-10)=10, base=3, remainder=1 → first gets 4, others get 3
+    // Apply negative sign: [-4, -3, -3]
+    expect(shares3).toEqual([cents(-4), cents(-3), cents(-3)]);
+    expect(shares3.reduce((a, b) => a + b, 0)).toBe(-10); // Invariant: sum = total
   });
 
   it("handles zero total", () => {
@@ -276,15 +278,18 @@ describe("splitEvenly", () => {
     expect(shares.reduce((a, b) => a + b, 0)).toBe(1);
   });
 
-  // Edge case: negative amount with n > absolute value (documents bug)
+  // Edge case: negative amount with n > absolute value (invariant preserved)
   it("handles negative total with n greater than absolute value", () => {
-    const shares = splitEvenly(-3, 10);
-    // Math.floor(-3/10) = -1, |remainder| = 3, distributes -1 to first 3 shares
-    expect(shares[0]).toBe(-2); // base -1 + remainder -1
-    expect(shares[3]).toBe(-1); // base -1 (no remainder)
-    expect(shares[9]).toBe(-1);
-    // Bug: sum is -13, not -3
-    expect(shares.reduce((a, b) => a + b, 0)).toBe(-13);
+    const shares = splitEvenly(cents(-3), 10);
+    // abs(-3)=3, base=0, remainder=3 → first 3 get 1, rest get 0
+    // Apply negative sign: [-1, -1, -1, 0, 0, 0, 0, 0, 0, 0]
+    expect(shares[0]).toBe(cents(-1));
+    expect(shares[1]).toBe(cents(-1));
+    expect(shares[2]).toBe(cents(-1));
+    expect(Math.abs(shares[3])).toBe(0); // Handle both 0 and -0
+    expect(Math.abs(shares[9])).toBe(0); // Handle both 0 and -0
+    // Invariant: sum = total
+    expect(shares.reduce((a, b) => a + b, 0)).toBe(-3);
   });
 
   // Edge case: validate remainder never exceeds n-1

@@ -19,16 +19,16 @@ Reusable, **proven** prompts for team routine tasks. Each prompt is structured (
 
 | # | Prompt | Purpose | Tested? | Command? |
 |---|--------|---------|---------|----------|
-| 1 | [`add-tests.md`](./add-tests.md) | Comprehensive edge-case tests | ✅ 27 tests | `/add-tests` |
+| 1 | [`add-tests.md`](./add-tests.md) | Comprehensive edge-case tests | ✅ 57 tests | `/add-tests` |
 | 2 | [`review-pr.md`](./review-pr.md) | Adversarial code review | ✅ 2+ findings | `/review-pr` |
-| 3 | [`write-docs.md`](./write-docs.md) | JSDoc + README documentation | ⏳ ready | — |
-| 4 | [`refactor.md`](./refactor.md) | Refactor for readability (no API changes) | ⏳ ready | — |
-| 5 | [`debug.md`](./debug.md) | Diagnose failing tests & unexpected behavior | ⏳ ready | — |
-| 6 | [`performance-audit.md`](./performance-audit.md) | Algorithmic complexity & bottleneck analysis | ⏳ ready | — |
-| 7 | [`security-check.md`](./security-check.md) | Input validation, injection risks, unsafe patterns | ⏳ ready | — |
-| 8 | [`explain-code.md`](./explain-code.md) | Explain module to junior developers | ⏳ ready | — |
-| 9 | [`improve-types.md`](./improve-types.md) | Stricter TypeScript types & branded types | ⏳ ready | — |
-| 10 | [`optimize-imports.md`](./optimize-imports.md) | Review imports, minimize bundle size | ⏳ ready | — |
+| 3 | [`write-docs.md`](./write-docs.md) | JSDoc + README documentation | 📋 structured | — |
+| 4 | [`refactor.md`](./refactor.md) | Refactor for readability (no API changes) | 📋 structured | — |
+| 5 | [`debug.md`](./debug.md) | Diagnose failing tests & unexpected behavior | 📋 structured | — |
+| 6 | [`performance-audit.md`](./performance-audit.md) | Algorithmic complexity & bottleneck analysis | 📋 structured | — |
+| 7 | [`security-check.md`](./security-check.md) | Input validation, injection risks, unsafe patterns | 📋 structured | — |
+| 8 | [`explain-code.md`](./explain-code.md) | Explain module to junior developers | 📋 structured | — |
+| 9 | [`improve-types.md`](./improve-types.md) | Stricter TypeScript types & branded types | 📋 structured | — |
+| 10 | [`optimize-imports.md`](./optimize-imports.md) | Review imports, minimize bundle size | 📋 structured | — |
 
 ## How to use each prompt
 

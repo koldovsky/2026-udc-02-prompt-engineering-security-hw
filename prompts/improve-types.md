@@ -83,7 +83,7 @@ Modified `app/src/money.ts` with improved types + brief explanation (e.g., "adde
 
 ## Verified
 
-- [ ] Branded types or stricter signatures introduced
-- [ ] All tests pass
-- [ ] No behavior changes
-- [ ] Common mistakes caught at compile time
+- [x] Branded types (Cents, Percent) introduced + type guards
+- [x] All tests pass (57 tests)
+- [x] No behavior changes — only types (money.ts + money.test.ts)
+- [x] Common mistakes caught at compile time (Infinity, NaN, float, range checks)

@@ -9,7 +9,7 @@ version: 1
 ## Baseline (weak)
 
 ```
-розповідь як це працює
+розкажи як це працює
 ```
 
 ## Production — markdown (OpenAI / GPT-5.x dialect)

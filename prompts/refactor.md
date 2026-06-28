@@ -9,7 +9,7 @@ version: 1
 ## Baseline (weak)
 
 ```
-улучши код в money.ts
+покращи код в money.ts
 ```
 
 ## Production — markdown (OpenAI / GPT-5.x dialect)

@@ -8,7 +8,7 @@ version: 1
 
 ## Baseline (weak)
 
-```
+```text
 напиши коментарі до money.ts
 ```
 
@@ -22,7 +22,7 @@ Goal: Add comprehensive JSDoc comments to all exported functions in `app/src/mon
 Context:
 - File: `app/src/money.ts` — 4 utility functions for money handling in integer cents
 - Audience: backend developers who will use or maintain this module
-- Known issues: splitEvenly loses remainder cents (document this explicitly)
+- Invariant: splitEvenly distributes remainder cents to first shares (sum always equals totalCents)
 - Framework: Node.js 22, TypeScript
 
 Constraints:
@@ -35,7 +35,7 @@ Acceptance criteria:
 - All 4 functions have complete JSDoc with @param, @returns, @throws
 - README explains: module purpose, when to use it, key assumptions (integer cents), known bugs
 - At least 1 @example per function showing typical usage
-- Known bug (splitEvenly remainder) is clearly documented with workaround
+- splitEvenly invariant (sum of shares = totalCents) is documented with examples (including negative amounts)
 
 Output:
 - Modified `app/src/money.ts` with JSDoc
@@ -58,10 +58,10 @@ You are a technical writer for a financial utilities module. Add comprehensive J
 File: `app/src/money.ts` — 4 utility functions:
 - formatCents: format integer cents as decimal string
 - parseAmount: parse decimal string to integer cents
-- splitEvenly: split total across n people (has remainder cent bug)
+- splitEvenly: split total across n people (distributes remainder cents correctly, invariant: sum = total)
 - applyDiscount: apply percentage discount with rounding
 
-Audience: backend developers. Known issue: splitEvenly loses remainder cents.
+Audience: backend developers. Key invariant: splitEvenly maintains sum = totalCents, handles negatives correctly.
 </context>
 
 <constraints>
