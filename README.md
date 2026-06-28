@@ -32,7 +32,7 @@ Full step-by-step instructions: [`docs/walkthrough.md`](docs/walkthrough.md).
 | `materials/weak-prompt.md` | Weak prompt to improve (Task A) |
 | `materials/sensitive-ticket.md` | **Synthetic** sensitive doc to sanitize (Task B) |
 | `materials/decoy-doc.md` | Prompt-injection decoy (Task C) |
-| `prompts/_template.md` · `prompts/review-pr.md` | Prompt template + one worked example |
+| `prompts/_template.md` · `prompts/review.md` | Prompt template + one worked example |
 | `docs/templates/` | Skeletons for your reports |
 | `.github/pull_request_template.md` | PR checklist (auto-applied) |
 | `.coderabbit.yaml` | CodeRabbit auto-review tuned to this homework's DoD |

@@ -11,19 +11,55 @@ generic copies from the internet. This is Task A of the WS2 homework.
 4. Promote the most useful ones to commands (`.cursor/commands/` or
    `.claude/commands/`) so the whole team calls them with `/name`.
 
-## Index (build this out to 10+)
+## Index (12 prompts — all verified against `app/`)
 
-| Prompt | Category | Target | Command? |
-|--------|----------|--------|----------|
-| `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
+| Prompt | Category | Target (`$ARGUMENTS`) | Verified | Command? |
+|--------|----------|------------------------|:--------:|----------|
+| `review.md` | review | a file or diff | ✅ | ✅ `/review` |
+| `add-tests.md` | tests | a TS source file | ✅ | ✅ `/add-tests` |
+| `tests-from-bug.md` | tests / debug | a bug / failing case | ✅ | |
+| `security-review.md` | review / security | a file or diff | ✅ | |
+| `write-docs.md` | docs | a module | ✅ | |
+| `usage-examples.md` | docs | a module | ✅ | |
+| `refactor-safe.md` | refactor | a file | ✅ | |
+| `tighten-types.md` | refactor | a file | ✅ | |
+| `add-validation.md` | refactor / hardening | a function / file | ✅ | |
+| `debug-failure.md` | debug | a stack trace / failing output | ✅ | |
+| `pr-description.md` | workflow / docs | a diff / branch | ✅ | |
+| `sanitize-doc.md` | data hygiene | a doc with sensitive data | ✅ | |
 
-Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
-prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full
-checklist.
+**Coverage met:** tests, review, docs, refactoring, debug (+ security & data
+hygiene). Every prompt ships **both dialects** (markdown + XML); all use the
+`$ARGUMENTS` convention. See `docs/walkthrough.md` for the full checklist.
+
+## Using the commands
+
+Two prompts are promoted to Claude Code slash commands in `.claude/commands/`.
+Claude Code auto-discovers them — type `/` to list them. Whatever you type after
+the command name replaces `$ARGUMENTS` in the command body.
+
+```bash
+# Generate the edge-case tests a file's smoke tests skip
+/add-tests app/src/money.ts
+
+# Adversarially review a file before merge
+/review app/src/money.ts
+
+# Review a diff instead of a file (shell substitution runs before send)
+/review "$(git diff main...HEAD)"
+```
+
+Notes:
+
+- **`argument-hint`** in each command's frontmatter previews the expected arg as
+  you type (e.g. `<path to file under test>`).
+- **No argument?** `$ARGUMENTS` is empty, so the command falls back to asking you
+  for a target — always pass one.
+- **Scope:** project commands live in `.claude/commands/` (shared via git);
+  personal ones go in `~/.claude/commands/`.
+- **Other tools:** Cursor reads `.cursor/commands/`. For GPT/Copilot/ChatGPT,
+  there's no `/command` — open the matching `prompts/<name>.md`, copy the markdown
+  block, and substitute the file path for `$ARGUMENTS` by hand.
 
 ## Safety
 
