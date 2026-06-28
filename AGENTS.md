@@ -41,6 +41,9 @@ Baseline guidance for an Agentic IDE working in **this homework repo**.
   explicit human confirmation.
 - **No real secrets or PII** anywhere in the repo or PR — only placeholders and
   synthetic examples. If you need sensitive context, mask/synthesize it first.
+- **Human-in-the-loop for irreversible actions** — always confirm before: pushing to
+  remote, opening/closing PRs, sending data to external services, writing outside the
+  repo, or deleting/overwriting files. One wrong action costs more than one extra question.
 
 ## How to verify
 

@@ -1,0 +1,23 @@
+# Keep the agent's context focused: hide noise and heavy/generated files.
+
+# Dependencies & build output
+node_modules/
+app/node_modules/
+app/.next/
+app/out/
+dist/
+build/
+
+# Lockfiles (large, low-signal for reasoning)
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Logs & local env
+*.log
+.env
+.env.*
+
+# OS / editor junk
+.DS_Store
+nul
