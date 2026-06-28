@@ -14,7 +14,10 @@
       "Read(./**/id_ed25519*)",
       "Read(./**/credentials.json)",
       "Read(./**/.aws/credentials)",
-      "Read(./**/kubeconfig)"
+      "Read(./**/kubeconfig)",
+      "Read(./**/*KEY*)",
+      "Read(./**/*TOKEN*)",
+      "Read(./**/*SECRET*)"
     ]
   }
 }
