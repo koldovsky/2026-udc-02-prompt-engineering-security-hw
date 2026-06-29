@@ -11,19 +11,31 @@ generic copies from the internet. This is Task A of the WS2 homework.
 4. Promote the most useful ones to commands (`.cursor/commands/` or
    `.claude/commands/`) so the whole team calls them with `/name`.
 
-## Index (build this out to 10+)
+## Index
 
 | Prompt | Category | Target | Command? |
 |--------|----------|--------|----------|
 | `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
+| `add-tests.md` | tests | `app/src/money.ts`, `app/src/money.test.ts` | ✅ `.claude/commands/add-tests.md` |
+| `fix-money-bug.md` | fix | `app/src/money.ts`, `app/src/money.test.ts` | |
+| `write-money-docs.md` | docs | `app/README.md`, `app/src/money.ts` | |
+| `refactor-money.md` | refactor | `app/src/money.ts` | |
+| `debug-failing-test.md` | debug | Vitest failure output | |
+| `add-validation.md` | validation | `app/src/money.ts`, `app/src/money.test.ts` | |
+| `improve-errors.md` | security/errors | `app/src/money.ts`, `app/src/money.test.ts` | |
+| `typecheck-cleanup.md` | typecheck | `app/tsconfig.json`, `app/src/*.ts` | |
+| `review-tests.md` | review/tests | `app/src/money.test.ts` | |
+| `update-app-readme.md` | docs | `app/README.md` | |
 
-Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
-prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full
-checklist.
+Coverage: **tests, review, docs, refactoring, debug** plus validation,
+typecheck, and security-aware error handling. Each cookbook entry includes both
+markdown and XML dialects so it can be adapted for Codex, Copilot, ChatGPT, or
+Claude Code.
+
+Promoted commands:
+
+- `.claude/commands/add-tests.md` — add focused Vitest edge-case coverage.
+- `.claude/commands/review-money.md` — review money helpers before merge.
 
 ## Safety
 
