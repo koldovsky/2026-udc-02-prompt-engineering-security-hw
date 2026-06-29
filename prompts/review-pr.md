@@ -10,6 +10,9 @@ A worked example to set the bar for your cookbook (Task A). Point it at
 `app/src/money.ts` and it should surface the planted issues (remainder cents in
 `splitEvenly`, unvalidated `percent` in `applyDiscount`).
 
+**Dual dialect (Task A, step 6):** starter prompt in markdown (GPT) + XML (Claude).
+Pair with your own dual-dialect prompt in `add-tests.md`.
+
 ## Baseline (weak)
 
 ```
