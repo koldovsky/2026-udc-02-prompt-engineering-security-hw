@@ -31,3 +31,10 @@ yarn-error.log*
 
 # Windows Git Bash safety: prevent accidental NUL device files
 nul
+
+# Temporary / AI-generated working files
+tmp/
+
+# Local config overrides
+*.local.json
+local.json

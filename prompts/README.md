@@ -11,15 +11,24 @@ generic copies from the internet. This is Task A of the WS2 homework.
 4. Promote the most useful ones to commands (`.cursor/commands/` or
    `.claude/commands/`) so the whole team calls them with `/name`.
 
-## Index (build this out to 10+)
+## Index
 
 | Prompt | Category | Target | Command? |
 |--------|----------|--------|----------|
 | `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
+| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` |
+| `find-hidden-bugs.md` | debug | `app/src/money.ts` | ✅ `/find-bugs` |
+| `implement_new_feature.md` | feature | `app/src/money.ts` | — |
+| `refactor_existing_code.md` | refactor | `app/src/money.ts` | — |
+| `generate_documentation.md` | docs | `app/src/money.ts` | — |
+| `debug.md` | debug | `app/src/money.ts` | — |
+| `performance_optimization.md` | perf | `app/src/money.ts` | — |
+| `architecture_review.md` | review | `app/src/money.ts` | — |
+| `break_down_feature.md` | planning | generic | ✅ `/break-down-feature` |
+| `validate-discount-percent.md` | feature | `app/src/money.ts` | — |
+| `fix-splitevenly-negative.md` | debug | `app/src/money.ts` | — |
+| `security-audit.md` | security | `app/src/money.ts` | ✅ `/security-audit` |
+| `sanitize-before-commit.md` | security | staged changes | — |
 
 Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
 prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full

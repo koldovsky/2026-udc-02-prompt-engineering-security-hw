@@ -42,6 +42,18 @@ Baseline guidance for an Agentic IDE working in **this homework repo**.
 - **No real secrets or PII** anywhere in the repo or PR — only placeholders and
   synthetic examples. If you need sensitive context, mask/synthesize it first.
 
+## Temporary / AI-generated files
+
+- Write ephemeral working files (specs, plans, scratch notes) to `tmp/`.
+- `tmp/` is gitignored — nothing inside it is ever committed.
+- Do **not** create temporary subdirectories inside `docs/` or anywhere else in the tracked tree.
+
+## Git discipline
+
+- **Never commit or push** anything without being explicitly asked to do so.
+  Preparing a commit message or staging files is fine, but the actual
+  `git commit` / `git push` must wait for a direct human instruction.
+
 ## How to verify
 
 Before opening a PR: `cd app && npm test` is green, and the artifacts listed
