@@ -28,17 +28,33 @@ export function parseAmount(input: string): number {
 
 /**
  * Split a total (in cents) evenly across `n` people.
- * Returns an array of `n` integer-cent shares.
+ * Returns an array of `n` integer-cent shares whose sum is exactly `totalCents`.
  *
- * NOTE: there is a known correctness gap here around the remainder cents.
+ * The remainder cents (when `totalCents` is not divisible by `n`) are distributed
+ * one-per-share starting from the first share, so no cent is ever lost. Works
+ * symmetrically for negative totals.
  */
 export function splitEvenly(totalCents: number, n: number): number[] {
-  const base = Math.floor(totalCents / n);
-  const shares = new Array(n).fill(base);
-  return shares;
+  if (!Number.isInteger(totalCents)) {
+    throw new Error(`splitEvenly: totalCents must be an integer, got ${totalCents}`);
+  }
+  if (!Number.isInteger(n) || n <= 0) {
+    throw new Error(`splitEvenly: n must be a positive integer, got ${n}`);
+  }
+  const base = Math.trunc(totalCents / n);
+  const remainder = totalCents - base * n; // signed; |remainder| < n
+  const step = remainder >= 0 ? 1 : -1;
+  const extra = Math.abs(remainder); // first `extra` shares absorb the remainder
+  return Array.from({ length: n }, (_, i) => (i < extra ? base + step : base));
 }
 
 /** Apply a percentage discount (0–100) to integer cents, rounding to nearest cent. */
 export function applyDiscount(cents: number, percent: number): number {
+  if (!Number.isInteger(cents)) {
+    throw new Error(`applyDiscount: cents must be an integer, got ${cents}`);
+  }
+  if (!Number.isFinite(percent) || percent < 0 || percent > 100) {
+    throw new Error(`applyDiscount: percent must be in [0, 100], got ${percent}`);
+  }
   return Math.round(cents * (1 - percent / 100));
 }
