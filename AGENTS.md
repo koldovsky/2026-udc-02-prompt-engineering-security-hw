@@ -41,6 +41,7 @@ Baseline guidance for an Agentic IDE working in **this homework repo**.
   explicit human confirmation.
 - **No real secrets or PII** anywhere in the repo or PR — only placeholders and
   synthetic examples. If you need sensitive context, mask/synthesize it first.
+- **Least privilege / human-in-the-loop on actions with consequences(network, record, secrets)
 
 ## How to verify
 

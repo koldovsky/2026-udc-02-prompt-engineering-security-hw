@@ -1,32 +1,15 @@
-# Prompt cookbook
+## 🗂 Repo structure
 
-Reusable, **proven** prompts for this repo's routine — not chat history, not
-generic copies from the internet. This is Task A of the WS2 homework.
+### 🛠 Basic prompts
+1. `prompts/1.add-tests.md` — Write focused unit tests for money.ts functions; expose the remainder bug in splitEvenly
+2. `prompts/2.review.md` — Perform a rigorous, multi-layered code review of /app/src files to catch memory leaks, fix rendering bottlenecks, evaluate clean-code standards, and generate actionable "Before/After" code diff tables.
+3. `prompts/3.documentation.md` — Generate comprehensive JSDoc comments, component prop tables, and clear README files for code inside the /app/src folder
+4. `prompts/4.refactoring.md` — Optimize, modularize, and clean up frontend source code inside the /app/src folder without changing runtime behavior
+5. `prompts/5.debug.md` — Systematically isolate, diagnose, and resolve frontend application bugs and runtime exceptions inside the /app/src folder
+6. `prompts/6.code-optimization.md` — Systematically audit, tune, and optimize frontend runtime performance and Core Web Vitals inside the /app/src folder
+7. `prompts/7.security-vulnerabilities.md` — Systematically audit, detect, and remediate security vulnerabilities and injection risks inside the /app/src folder
+8. `prompts/8.lint-formatting.md` — Systematically audit, fix, and enforce strict code formatting, linting rules, and style guides inside the /app/src folder
 
-## How to use
-
-1. Copy `_template.md` → `prompts/<verb-object>.md`.
-2. Fill the 6 blocks (Role / Goal / Context / Constraints / Acceptance / Output / Stop).
-3. **Run it against a real target** in `app/` and tick "Verified".
-4. Promote the most useful ones to commands (`.cursor/commands/` or
-   `.claude/commands/`) so the whole team calls them with `/name`.
-
-## Index (build this out to 10+)
-
-| Prompt | Category | Target | Command? |
-|--------|----------|--------|----------|
-| `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
-
-Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
-prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full
-checklist.
-
-## Safety
-
-Prompts must contain **no real secrets or PII** — only placeholders and synthetic
-examples. If a prompt needs sensitive context, mask/synthesize it first
-(see `docs/sanitization-checklist.md`).
+### 📐 Custom commands
+9. `.claude/commands/start.md` — Run production build and pack the project into a clean, deploy-ready tarball archive.
+10. `.claude/commands/pack.md` — Check compilation, build the application, and start it after releasing the occupied port.
