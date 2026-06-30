@@ -40,5 +40,8 @@ export function splitEvenly(totalCents: number, n: number): number[] {
 
 /** Apply a percentage discount (0–100) to integer cents, rounding to nearest cent. */
 export function applyDiscount(cents: number, percent: number): number {
+  if (!Number.isFinite(percent) || percent < 0 || percent > 100) {
+    throw new Error("percent must be between 0 and 100");
+  }
   return Math.round(cents * (1 - percent / 100));
 }
