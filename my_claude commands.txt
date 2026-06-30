@@ -1,0 +1,31 @@
+Start promt
+claude -p "$(cat prompts/review.md)"
+
+HW 2
+Заповни docs/sanitized-ticket.md використовуючи docs/sanitization-checklist.md, а дані взяти з materials/sensitive-ticket.md
+
+тепер зроби перевірку:
+`docs/sanitized-ticket.md` без реальних значень (задача збережена)
++ `docs/sanitization-checklist.md`, придатний для повторного використання
+
+Статистика использования токенов
+npx repomix - жрет очень много токенов 27к приблизительно для простого проекта
+npx repomix --token-count-tree
+npx repomix --include "src/app/**/*"
+
+Использовал для оценки
+Do code quality review for typescript files in /app
+npx repomix --output repomix-output-before.md
+Do code quality review for file app/src/money.ts
+npx repomix --output repomix-output-after.md
+
+Для игнорирования контекста repomix-output*.md файлов нужно добавить в .claudeignore
+**/repomix-output*.md
+
+Помните, что внутри терминала Claude Code у вас есть встроенные команды управления контекстом. Если вы чувствуете, что модель начинает «тупить» или контекст забился старыми логами генерации, введите прямо в чат Claude Code команду /clear
+
+Лучше все делать в CLI, /stats например
+
+Обновление ClaudeCode 
+npm install -g @anthropic-ai/claude-code@latest
+
