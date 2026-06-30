@@ -11,19 +11,25 @@ generic copies from the internet. This is Task A of the WS2 homework.
 4. Promote the most useful ones to commands (`.cursor/commands/` or
    `.claude/commands/`) so the whole team calls them with `/name`.
 
-## Index (build this out to 10+)
+## Index
 
-| Prompt | Category | Target | Command? |
-|--------|----------|--------|----------|
-| `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
+| Prompt                                     | Category | Target | Command |
+|--------------------------------------------|----------|--------|---------|
+| [`review-pr.md`](review-pr.md)             | review | any file | `/review-pr` |
+| [`add-tests.md`](add-tests.md)             | tests | `src/money.ts` | `/add-tests` |
+| [`write-docs.md`](write-docs.md)           | docs | `src/money.ts` | `/write-docs` |
+| [`refactor-code.md`](refactor-code.md)     | refactor | `src/money.ts` | `/refactor-code` |
+| [`debug-issue.md`](debug-issue.md)         | debug | log / stack trace via `$ARGUMENTS` | `/debug-issue` |
+| [`add-logs.md`](add-logs.md)               | observability | `src/money.ts` | `/add-logs` |
+| [`explain-code.md`](explain-code.md)       | onboarding | any file via `$ARGUMENTS` | `/explain-code` |
+| [`find-duplicates.md`](find-duplicates.md) | quality | `src/money.ts` | `/find-duplicates` |
+| [`perf-check.md`](perf-check.md)           | performance | `src/money.ts` | `/perf-check` |
+| [`audit-secrets.md`](audit-secrets.md)     | security | `src/money.ts` | `/audit-secrets` |
 
-Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
-prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full
-checklist.
+**Total: 10 prompts.** Covers: tests, review, docs, refactor, debug, observability,
+onboarding, quality, performance, security.
+
+One prompt in both dialects (markdown + XML): `review-pr.md`.
 
 ## Safety
 
