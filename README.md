@@ -37,6 +37,7 @@ Full step-by-step instructions: [`docs/walkthrough.md`](docs/walkthrough.md).
 | `.github/pull_request_template.md` | PR checklist (auto-applied) |
 | `.coderabbit.yaml` | CodeRabbit auto-review tuned to this homework's DoD |
 | `AGENTS.md` | Baseline guidance for your Agentic IDE |
+| `scripts/sanitize.mjs` | Local, deterministic data sanitizer (Task B) — see below |
 
 You create: `prompts/*.md` (10+), `.cursor/commands/` or `.claude/commands/`,
 `docs/sanitized-ticket.md`, `docs/sanitization-checklist.md`,
@@ -46,6 +47,26 @@ You create: `prompts/*.md` (10+), `.cursor/commands/` or `.claude/commands/`,
 > ⚠️ Everything in `materials/` is **synthetic** — a teaching example of "what
 > sensitive looks like", not real people. Your PR must contain **no real
 > secrets or PII**.
+
+## Data sanitizer (Task B)
+
+`scripts/sanitize.mjs` turns a sensitive document into a shareable copy
+**locally** — the original never goes near a model. It applies a single ordered
+list of traffic-light rules (redaction / masking / synthetic / secrets
+out-of-band), preserves the underlying task, appends a redaction log, and runs a
+**leak check** that exits non-zero if any known secret/PII pattern survives.
+
+```bash
+node scripts/sanitize.mjs                                   # defaults below
+node scripts/sanitize.mjs <input.md> <output.md>            # explicit paths
+# default in : materials/sensitive-ticket.md
+# default out: docs/sanitized-ticket.md
+# exit codes : 0 ok · 1 input missing · 2 leak check failed
+```
+
+Why a script and not a prompt: you must never paste raw secrets/PII into a public
+model. A local, deterministic script is auditable, repeatable, and safe — see
+`docs/sanitization-checklist.md` for the full team process.
 
 ## Tools
 

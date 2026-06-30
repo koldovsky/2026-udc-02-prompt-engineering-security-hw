@@ -1,0 +1,11 @@
+# Context-curation ignore (Task D). Keeps dependency/build noise AND secrets
+# out of any context an AI tool ingests. Mirrors .cursorignore.
+node_modules/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+# security synergy with Task B/C: never let .env into context
+.env
+.env.*
+*.log
