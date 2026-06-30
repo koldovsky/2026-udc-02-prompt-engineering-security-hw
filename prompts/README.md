@@ -11,19 +11,38 @@ generic copies from the internet. This is Task A of the WS2 homework.
 4. Promote the most useful ones to commands (`.cursor/commands/` or
    `.claude/commands/`) so the whole team calls them with `/name`.
 
-## Index (build this out to 10+)
+## Index (12 prompts)
 
-| Prompt | Category | Target | Command? |
-|--------|----------|--------|----------|
-| `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
+| Prompt | Category | Target | Dialects | Command? |
+|--------|----------|--------|----------|----------|
+| `review-pr.md` | review | `app/src/money.ts` | md + xml | `/review` |
+| `add-tests.md` | tests | `app/src/money.ts` | md + xml | `/add-tests` |
+| `write-docs.md` | docs | `app/src/money.ts` | md + xml | — |
+| `refactor.md` | refactor | `app/src/money.ts` | md + xml | — |
+| `debug.md` | debug | a failing test / stack trace | md + xml | — |
+| `fix-bug.md` | bug-fix | `app/src/money.ts` (`splitEvenly`) | md + xml | — |
+| `add-validation.md` | hardening | `app/src/money.ts` (`applyDiscount`) | md + xml | — |
+| `explain-code.md` | onboarding | `app/src/money.ts` | md + xml | — |
+| `commit-message.md` | git | staged diff | md + xml | — |
+| `pr-description.md` | PR / docs | branch diff | md + xml | — |
+| `sanitize-doc.md` | security | `materials/sensitive-ticket.md` | md + xml | `/sanitize` |
+| `audit-injection.md` | security | `materials/decoy-doc.md` | md + xml | — |
 
-Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
-prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full
-checklist.
+Covers the required **tests, review, docs, refactoring, debug** plus bug-fix,
+validation, onboarding, git, and two security prompts. Every entry carries both
+dialects (markdown + XML); `add-tests.md` and `review-pr.md` are the worked
+two-dialect examples.
+
+## Commands (promoted to `.claude/commands/`)
+
+| Command | From | What it does |
+|---------|------|--------------|
+| `/add-tests <file>` | `add-tests.md` | add edge-case tests, verify with `npm test` |
+| `/review <file\|diff>` | `review-pr.md` | adversarial, security-aware review (read-only) |
+| `/sanitize <doc>` | `sanitize-doc.md` | classify + sanitize a doc, secrets out-of-band |
+
+Each command has a `description` in frontmatter and takes `$ARGUMENTS`. (Same
+files work under `.cursor/commands/` for Cursor users.)
 
 ## Safety
 

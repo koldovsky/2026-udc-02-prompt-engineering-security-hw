@@ -1,0 +1,20 @@
+# Keep AI context focused: drop heavy/generated, low-signal, and sensitive files.
+# repomix already honors .gitignore (node_modules etc.); these are the extras.
+
+# Lockfiles — large, low signal for reasoning
+**/package-lock.json
+**/pnpm-lock.yaml
+**/yarn.lock
+
+# Build / coverage output
+dist/
+build/
+out/
+coverage/
+
+# repomix's own output
+repomix-output.*
+
+# Secrets / local env — never feed to a model (defense-in-depth)
+.env
+.env.*
