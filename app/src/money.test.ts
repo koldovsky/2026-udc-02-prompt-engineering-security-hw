@@ -29,4 +29,9 @@ describe("applyDiscount", () => {
   it("applies a simple discount", () => {
     expect(applyDiscount(10000, 10)).toBe(9000);
   });
+
+  it("rejects percentages outside the supported range", () => {
+    expect(() => applyDiscount(10000, -1)).toThrow("percent must be between 0 and 100");
+    expect(() => applyDiscount(10000, 101)).toThrow("percent must be between 0 and 100");
+  });
 });

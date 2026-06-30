@@ -15,11 +15,16 @@ generic copies from the internet. This is Task A of the WS2 homework.
 
 | Prompt | Category | Target | Command? |
 |--------|----------|--------|----------|
-| `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
+| `review-pr.md` | review | `app/src/money.ts` | ✅ `/review-pr` |
+| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` |
+| `write-docs.md` | docs | `app/src/money.ts` | ✅ `/write-docs` |
+| `refactor-money.md` | refactor | `app/src/money.ts` | — |
+| `debug-money.md` | debug | `app/src/money.ts` | ✅ `/debug-money` |
+| `check-types.md` | quality | `app/src/money.ts` | — |
+| `audit-edge-cases.md` | review | `app/src/money.ts` | — |
+| `summarize-changes.md` | docs | `app/src/money.ts` | — |
+| `check-coverage.md` | quality | `app/src/money.ts` | — |
+| `explain-logic.md` | docs | `app/src/money.ts` | — |
 
 Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
 prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full
