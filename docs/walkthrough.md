@@ -159,12 +159,12 @@ Node 22+, GitHub account.
 
 ## Definition of Done
 
-- [ ] **Task A:** `prompts/` ≥10 структурованих файлів + ≥2 команди + 1 промпт у 2 діалектах
-- [ ] **Task B:** `docs/sanitized-ticket.md` + `docs/sanitization-checklist.md`
-- [ ] **Task C:** `docs/injection-report.md` (атака → захист → висновок)
-- [ ] **Task D:** `docs/context-layer.md` (числа before/after + конкретна зміна)
-- [ ] **Task E (bonus):** `docs/ab-experiment.md`
-- [ ] **Жодних реальних секретів/PII** у PR (це теж перевірка засвоєння Task B)
+- [] **Task A:** `prompts/` ≥10 структурованих файлів + ≥2 команди + 1 промпт у 2 діалектах
+- [] **Task B:** `docs/sanitized-ticket.md` + `docs/sanitization-checklist.md`
+- [] **Task C:** `docs/injection-report.md` (атака → захист → висновок)
+- [] **Task D:** `docs/context-layer.md` (числа before/after + конкретна зміна)
+- [] **Task E (bonus):** `docs/ab-experiment.md`
+- [] **Жодних реальних секретів/PII** у PR (це теж перевірка засвоєння Task B)
 
 ## Здача
 
