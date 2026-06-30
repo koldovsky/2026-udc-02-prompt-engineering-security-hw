@@ -5,25 +5,27 @@ generic copies from the internet. This is Task A of the WS2 homework.
 
 ## How to use
 
-1. Copy `_template.md` → `prompts/<verb-object>.md`.
-2. Fill the 6 blocks (Role / Goal / Context / Constraints / Acceptance / Output / Stop).
-3. **Run it against a real target** in `app/` and tick "Verified".
-4. Promote the most useful ones to commands (`.cursor/commands/` or
+1. Create `prompts/<verb-object>.md` with the 6 blocks: Role / Goal / Context / Constraints / Acceptance / Output / Stop.
+2. **Run it against a real target** in `app/` and tick "Verified".
+3. Promote the most useful ones to commands (`.cursor/commands/` or
    `.claude/commands/`) so the whole team calls them with `/name`.
 
-## Index (build this out to 10+)
+## Index
 
-| Prompt | Category | Target | Command? |
+| Prompt | Category | Target | Verified |
 |--------|----------|--------|----------|
-| `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
+| `add-tests.md` | tests | `app/src/money.ts` | ✅ 16/16 vitest pass |
+| `enrich-jsdoc.md` | docs | `app/src/money.ts` | ✅ @param/@returns/@throws/@example added |
+| `explain-module.md` | docs | `app/src/money.ts` | ✅ 300-word onboarding explanation |
+| `generate-changelog.md` | docs | `git diff main...HEAD` | ✅ valid Keep-a-Changelog entry |
+| `fix-remainder-bug.md` | debug | `app/src/money.ts` | ✅ vitest 15 fail → 16/16 pass |
+| `add-input-guards.md` | refactor | `app/src/money.ts` | ✅ guards + tests added |
+| `extract-cents-type.md` | refactor | `app/src/money.ts` | ✅ branded Cents type, tsc clean |
+| `diagnose-error.md` | debug | stack trace | ✅ root cause at money.ts:23 |
+| `security-audit.md` | security | `app/src/money.ts` | ✅ 3 findings catalogued |
+| `trace-test-failure.md` | debug | vitest output + `app/src/money.ts` | ✅ traced remainder bug to `money.ts:37` |
 
-Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
-prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full
-checklist.
+All 10 prompts ship both a **markdown** (GPT/Copilot) and **XML** (Claude) dialect.
 
 ## Safety
 
