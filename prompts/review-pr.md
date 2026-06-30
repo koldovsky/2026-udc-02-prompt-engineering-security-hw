@@ -12,7 +12,7 @@ A worked example to set the bar for your cookbook (Task A). Point it at
 
 ## Baseline (weak)
 
-```
+```text
 подивись чи все ок у money.ts
 ```
 
