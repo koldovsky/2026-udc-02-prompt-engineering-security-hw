@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Secrets / local env
+.env
+.env.*
+*.key
+*.pem
+
+# Build output
+dist/
+build/
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Lockfiles are noisy for AI context (still tracked by git, just not indexed)
+package-lock.json
+
+# OS/editor cruft
+.DS_Store
