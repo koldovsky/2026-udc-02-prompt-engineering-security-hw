@@ -9,6 +9,11 @@ watch the agent guess at scope, stack, and "done".
 
 (English equivalent: `help with tests for app`)
 
+```
+Model used: Sonnet 4.6 Medium Thinking
+Context Usage: ~38.9K/200K tokens
+```
+
 ## Why it's weak
 
 - No **scope** — which file? the agent reads everything under `app/`.

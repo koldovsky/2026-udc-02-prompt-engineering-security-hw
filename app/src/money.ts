@@ -28,17 +28,23 @@ export function parseAmount(input: string): number {
 
 /**
  * Split a total (in cents) evenly across `n` people.
- * Returns an array of `n` integer-cent shares.
- *
- * NOTE: there is a known correctness gap here around the remainder cents.
+ * Returns an array of `n` integer-cent shares that always sum to `totalCents`,
+ * with any leftover cents distributed one-by-one to the first shares.
  */
 export function splitEvenly(totalCents: number, n: number): number[] {
   const base = Math.floor(totalCents / n);
+  const remainder = totalCents - base * n;
   const shares = new Array(n).fill(base);
+  for (let i = 0; i < remainder; i++) {
+    shares[i] += 1;
+  }
   return shares;
 }
 
 /** Apply a percentage discount (0–100) to integer cents, rounding to nearest cent. */
 export function applyDiscount(cents: number, percent: number): number {
+  if (percent < 0 || percent > 100) {
+    throw new Error(`percent must be between 0 and 100: ${percent}`);
+  }
   return Math.round(cents * (1 - percent / 100));
 }
