@@ -11,7 +11,7 @@ in-code docs.
 
 ## Baseline (weak)
 
-```
+```text
 допиши readme для app
 ```
 
@@ -22,7 +22,8 @@ Role: TS engineer writing user-facing docs for this repo.
 Goal: Add a "Usage" section to app/README.md showing how to call each
 exported function in app/src/money.ts.
 Context: app/README.md currently describes what's inside but has no call
-examples. Exports: formatCents, parseAmount, splitEvenly, applyDiscount.
+examples. Exports: formatCents, parseAmount, splitEvenly, applyDiscount,
+applyTax.
 Constraints:
 - Scope: app/README.md only.
 - Every example must be runnable as written against the current money.ts
@@ -49,8 +50,8 @@ function in app/src/money.ts. Additive only — keep existing sections.
 </instructions>
 
 <context>
-Exports: formatCents, parseAmount, splitEvenly, applyDiscount. README
-currently lists what's inside but has no call examples.
+Exports: formatCents, parseAmount, splitEvenly, applyDiscount, applyTax.
+README currently lists what's inside but has no call examples.
 </context>
 
 <constraints>
@@ -80,3 +81,6 @@ currently lists what's inside but has no call examples.
 - [x] Existing "What's inside" section kept; only added "Usage" +
       "History" sections.
 - [x] No `app/src` changes in this pass — README-only, as scoped.
+- [x] **Update (Task E):** re-ran this prompt's scope after `applyTax` was
+      added (see `docs/ab-experiment.md`) — `app/README.md` now lists
+      `applyTax` in "What's inside" and has a matching Usage example.

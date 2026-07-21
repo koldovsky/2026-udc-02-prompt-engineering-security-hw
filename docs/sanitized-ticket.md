@@ -28,7 +28,7 @@ All 🔴 values redacted/masked/synthetic. Secrets moved out-of-band.
 
 ## Кроки відтворення (з production-логу, санітизовано)
 
-```
+```text
 2026-05-30 14:02:11 INFO  txn=TX-99812 account=<IBAN> amount=1000.00 fee=2.50
 2026-05-30 14:02:11 INFO  txn=TX-99812 fee applied twice -> total fee 5.00
 2026-05-30 14:02:12 DEBUG  db=postgres://<SECRET_OUT_OF_BAND>@<REDACTED_HOST>:5432/payments_prod

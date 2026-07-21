@@ -97,7 +97,7 @@ export function splitEvenly(totalCents: number, n: number): number[] {
  */
 export function applyDiscount(cents: number, percent: number): number {
   assertPercentInRange(percent);
-  return Math.round(cents * (1 - percent / 100));
+  return Math.round(cents * (1 - percent / MAX_PERCENT));
 }
 
 /**
@@ -110,5 +110,5 @@ export function applyDiscount(cents: number, percent: number): number {
  */
 export function applyTax(cents: number, percent: number): number {
   assertPercentInRange(percent);
-  return Math.round(cents * (1 + percent / 100));
+  return Math.round(cents * (1 + percent / MAX_PERCENT));
 }

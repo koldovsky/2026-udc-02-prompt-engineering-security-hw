@@ -11,7 +11,7 @@ defects; this one narrows to a security lens specifically, per the WS2 theme.
 
 ## Baseline (weak)
 
-```
+```text
 є тут щось небезпечне в money.ts?
 ```
 
