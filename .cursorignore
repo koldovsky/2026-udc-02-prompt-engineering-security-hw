@@ -18,6 +18,15 @@ yarn.lock
 .env
 .env.*
 
+# Secret-like filenames — never load into context, even if untracked
+*KEY*
+*key*
+*TOKEN*
+*token*
+*SECRET*
+*secret*
+*.pem
+
 # OS / editor junk
 .DS_Store
 nul
