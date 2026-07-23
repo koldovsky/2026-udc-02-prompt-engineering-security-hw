@@ -1,0 +1,65 @@
+<prompt name="debug-logging" description="Додати structured debug-логування у app/src/money.ts з умовним увімкненням">
+
+<goal>
+Додати debug-логування у app/src/money.ts, яке вмикається через env-змінну
+і допомагає відстежити вхідні/вихідні значення та помилки.
+</goal>
+
+<context>
+Файл app/src/money.ts експортує функції: cents, percent, formatCents,
+parseAmount, splitEvenly, applyDiscount.
+Логування потрібне для debugging у development — не для production monitoring.
+</context>
+
+<log_strategy>
+  <log_targets>
+    <function name="parseAmount" log="true">вхідний рядок + результат (або error)</function>
+    <function name="splitEvenly" log="true">totalCents, n, результуючий масив</function>
+    <function name="applyDiscount" log="true">вхідна сума, відсоток, результат</function>
+    <function name="formatCents" log="false" reason="hot path — занадто часті виклики"/>
+    <function name="cents" log="false" reason="тривіальний constructor"/>
+    <function name="percent" log="false" reason="тривіальний constructor"/>
+  </log_targets>
+
+  <levels>
+    <level name="debug">вхід/вихід функції (happy path)</level>
+    <level name="warn">підозрілі але валідні входи (percent = 0 або 100)</level>
+    <level name="error">перед throw — дає trace context</level>
+  </levels>
+</log_strategy>
+
+<implementation>
+  <helper_function>
+const DEBUG = typeof process !== "undefined" &amp;&amp; process.env.DEBUG_MONEY === "1";
+
+function log(level: "debug" | "warn", fn: string, data: Record&lt;string, unknown&gt;): void {
+  if (!DEBUG) return;
+  console[level](`[money:${fn}]`, JSON.stringify(data));
+}
+  </helper_function>
+
+  <usage_example>
+log("debug", "splitEvenly", { totalCents, n, shares });
+  </usage_example>
+</implementation>
+
+<constraints>
+  <constraint>Не змінюй runtime-логіку функцій.</constraint>
+  <constraint>Логування вимкнене за замовчуванням (DEBUG_MONEY !== "1" → zero overhead).</constraint>
+  <constraint>Structured format: [money:function] { key: value }.</constraint>
+  <constraint>Не логуй повні масиви якщо n &gt; 10 — лише { n, first3: shares.slice(0,3), sum }.</constraint>
+  <constraint>Не логуй sensitive data — суми допустимі, PII/tokens — ні.</constraint>
+  <constraint>Максимум 1 log-statement на функцію (на вході або виході, не обидва).</constraint>
+</constraints>
+
+<acceptance_criteria>
+  <criterion>DEBUG_MONEY=1 → логи видимі у console.</criterion>
+  <criterion>Без DEBUG_MONEY → жодного виводу, zero performance overhead.</criterion>
+  <criterion>Всі тести проходять без змін.</criterion>
+  <criterion>Log-helper log() — окрема internal функція, не інлайн у кожній функції.</criterion>
+  <criterion>Формат: [money:functionName] {"key":"value"}.</criterion>
+</acceptance_criteria>
+
+<stop>Зупинись після додавання логування у money.ts. Не змінюй тести.</stop>
+
+</prompt>
