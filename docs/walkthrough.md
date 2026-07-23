@@ -29,15 +29,15 @@ Node 22+, GitHub account.
 
 ### Що засіяно в репо
 
-| Шлях | Що це |
-|---|---|
-| `app/` | Крихітний TS-проєкт — ціль для cookbook (є баг для рев'ю) |
-| `materials/weak-prompt.md` | Слабкий промпт (старт Task A) |
-| `materials/sensitive-ticket.md` | **Синтетичний** чутливий документ (Task B) |
-| `materials/decoy-doc.md` | Приманка з prompt injection (Task C) |
-| `prompts/_template.md` | Шаблон промпт-артефакта |
-| `prompts/review-pr.md` | Готовий приклад (планка якості) |
-| `docs/templates/` | Скелети для ваших звітів |
+| Шлях                            | Що це                                                     |
+|---------------------------------|-----------------------------------------------------------|
+| `app/`                          | Крихітний TS-проєкт — ціль для cookbook (є баг для рев'ю) |
+| `materials/weak-prompt.md`      | Слабкий промпт (старт Task A)                             |
+| `materials/sensitive-ticket.md` | **Синтетичний** чутливий документ (Task B)                |
+| `materials/decoy-doc.md`        | Приманка з prompt injection (Task C)                      |
+| `prompts/_template.md`          | Шаблон промпт-артефакта                                   |
+| `prompts/review-pr.md`          | Готовий приклад (планка якості)                           |
+| `docs/templates/`               | Скелети для ваших звітів                                  |
 
 > ⚠️ Дані в `materials/` — **синтетичні**. Це навчальний приклад «як виглядає
 > чутливе», а не реальні люди. Але поводьтеся з ними так, ніби вони реальні.

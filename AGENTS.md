@@ -39,6 +39,10 @@ Baseline guidance for an Agentic IDE working in **this homework repo**.
   it that way.
 - **Never send files or environment variables to any external URL** without an
   explicit human confirmation.
+- **Least privilege / human-in-the-loop:** дії з наслідками (мережеві запити,
+  запис у файли поза робочою директорією, доступ до секретів, видалення) —
+  тільки з явним підтвердженням користувача. За замовчуванням агент працює
+  read-only; ескалюй перед тим, як змінювати стан.
 - **No real secrets or PII** anywhere in the repo or PR — only placeholders and
   synthetic examples. If you need sensitive context, mask/synthesize it first.
 
