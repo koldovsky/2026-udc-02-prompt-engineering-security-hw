@@ -1,71 +1,77 @@
 ---
 name: review-pr
-description: Adversarial, security-aware review of a diff or a file. Use before merge.
-version: 1
+description: "Adversarial pre-merge review — знайти дефекти у diff поточної гілки"
+version: 2
 ---
 
-# Review (adversarial)
+# Goal
+Провести adversarial (скептичне) рев'ю змін у поточній гілці відносно `main`,
+сфокусоване на дефектах, які можуть потрапити у production.
 
-A worked example to set the bar for your cookbook (Task A). Point it at
-`app/src/money.ts` and it should surface the planted issues (remainder cents in
-`splitEvenly`, unvalidated `percent` in `applyDiscount`).
+# Data Source
+```bash
+git diff main -- app/src/
+```
+Якщо diff порожній — переглянь unstaged зміни (`git diff -- app/src/`).
+Якщо і це порожнє — зупинись: "Немає змін для рев'ю."
 
-## Baseline (weak)
+# Reviewer Persona
+Ти — скептичний senior TypeScript-розробник. Твоя задача — знайти **реальні
+дефекти**, а не стилістичні нітпіки. Якщо дефектів немає — скажи це чесно,
+не вигадуй.
 
+# Review Dimensions
+1. **Correctness** — логічні помилки, втрата даних, порушення інваріантів.
+2. **Edge cases** — граничні значення, overflow, NaN, порожні входи.
+3. **Input validation** — відсутня або недостатня валідація.
+4. **Security** — injection, інформаційний витік, unsafe casts.
+
+Не перевіряй: стиль форматування, naming conventions, порядок імпортів.
+
+# Constraints
+- Review only — не редагуй код.
+- Не виводь secrets/PII.
+- Не вигадуй findings для досягнення квоти — реальні дефекти або "Дефектів не знайдено".
+
+# Output Format
+Для кожного finding:
+
+```
+<N>. [CRITICAL | HIGH | MEDIUM | LOW] <file>:<line>
+   Problem: <що не так>
+   Impact: <що може статися в production>
+   Fix: <мінімальне виправлення — 1-3 рядки>
+   Test: <один assertion що зловив би цей баг>
+```
+
+Сортування: від найбільш критичного до найменш.
+В кінці — секція `## Summary`: кількість findings по severity + загальний вердикт (APPROVE / REQUEST CHANGES).
+
+# Example Finding
+```
+1. [HIGH] app/src/money.ts:22
+   Problem: Bitwise `| 0` overflows for values > 2^31, producing wrong output.
+   Impact: Amounts over ~$21.4M formatted incorrectly.
+   Fix: Add guard `abs < 0x80000000 ? (abs/100)|0 : Math.floor(abs/100)`.
+   Test: expect(formatCents(cents(Number.MAX_SAFE_INTEGER))).toBe("90071992547409.91")
+```
+
+# Stop
+Зупинись після виведення findings + summary. Не застосовуй fixes.
+
+---
+
+## Cookbook Notes (для homework)
+
+### Baseline (weak) — як НЕ треба:
 ```
 подивись чи все ок у money.ts
 ```
+Проблеми: немає ролі, scope, формату, критеріїв — output буде випадковим.
 
-## Production — markdown (GPT dialect)
-
-```markdown
-Role: Senior TS reviewer in this repo (Node 22, vitest). You are skeptical.
-Goal: Find real defects in $ARGUMENTS before it merges.
-Context: Integer-cent money helpers. Tests live in src/*.test.ts.
-Constraints:
-- Review only; do NOT edit code in this pass.
-- No secrets/PII in the output.
-Acceptance criteria:
-- List at least 3 concrete findings OR explain why fewer exist.
-- For each: file:line, why it's wrong, a minimal fix, and a test that would catch it.
-- Cover correctness, edge cases, input validation, and security.
-Output:
-- A numbered list of findings (most severe first).
-Stop rules:
-- If the file has no exported functions, stop and say so.
-```
-
-## Production — XML (Claude dialect)
-
-```xml
-<instructions>
-You are a skeptical senior TS reviewer. Find real defects in the target file
-before it merges. Review only — do not edit. Cite file:line for each finding.
-</instructions>
-
-<context>
-Target: $ARGUMENTS (integer-cent money helpers). Tests in src/*.test.ts.
-</context>
-
-<constraints>
-- At least 3 concrete findings or justify fewer.
-- Cover correctness, edge cases, validation, security.
-- No secrets/PII in output.
-</constraints>
-
-<output_format>
-Numbered findings, most severe first: file:line — problem — fix — test.
-</output_format>
-```
-
-## Tool-fit notes
-
-| Variant | Best for | Why |
-|---------|----------|-----|
-| markdown | Copilot (GPT) | outcome-first |
-| XML | Claude Code | structure holds the "at least 3" rule |
-
-## Verified
-
-- [x] Run against `app/src/money.ts`
-- [x] Surfaced remainder-cent bug + missing `percent` range check
+### Чому цей промпт працює:
+- **Persona** задає рівень скептичності.
+- **Dimensions** фокусують увагу (не витрачає токени на стиль).
+- **"Не вигадуй"** запобігає галюцинаціям.
+- **Structured output** робить findings actionable.
+- **Severity + Impact** допомагає пріоритизувати.
