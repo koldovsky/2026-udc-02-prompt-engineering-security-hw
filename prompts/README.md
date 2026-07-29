@@ -11,19 +11,26 @@ generic copies from the internet. This is Task A of the WS2 homework.
 4. Promote the most useful ones to commands (`.cursor/commands/` or
    `.claude/commands/`) so the whole team calls them with `/name`.
 
-## Index (build this out to 10+)
+## Index
 
 | Prompt | Category | Target | Command? |
 |--------|----------|--------|----------|
-| `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
+| `review-pr.md` | review | `app/src/money.ts` | ✅ `.claude/commands/review-pr.md` |
+| `add-tests.md` | tests | `app/src/money.ts` | ✅ `.claude/commands/add-tests.md` |
+| `fix-bug.md` | debug/fix | `app/src/money.ts` | — |
+| `review-test-suite.md` | review/tests | `app/src/money.test.ts` | — |
+| `debug-failure.md` | debug | failing test output in `app/` | — |
+| `refactor-safely.md` | refactor | `app/src/money.ts` | — |
+| `harden-inputs.md` | security/validation | `app/src/money.ts` | — |
+| `write-docs.md` | docs | `app/src/money.ts` | — |
+| `explain-module.md` | docs/explain | `app/src/money.ts` | — |
+| `compare-approaches.md` | design | `app/src/money.ts` | — |
+| `add-typecheck-guard.md` | quality | `app/src/money.ts` | — |
+| `add-usage-examples.md` | docs/examples | `app/src/money.ts` | — |
 
-Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
-prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full
-checklist.
+Coverage achieved: **tests, review, docs, refactor, debug**. At least one prompt is
+provided in both dialects (markdown + XML), for example `review-pr.md` and
+`add-tests.md`.
 
 ## Safety
 

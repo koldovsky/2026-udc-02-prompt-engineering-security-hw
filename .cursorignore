@@ -21,3 +21,7 @@ yarn.lock
 # OS / editor junk
 .DS_Store
 nul
+
+# Workshop docs/prompt artifacts (high token noise for app coding tasks)
+docs/templates/
+prompts/
