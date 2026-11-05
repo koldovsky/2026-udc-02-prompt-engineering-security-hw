@@ -11,19 +11,30 @@ generic copies from the internet. This is Task A of the WS2 homework.
 4. Promote the most useful ones to commands (`.cursor/commands/` or
    `.claude/commands/`) so the whole team calls them with `/name`.
 
-## Index (build this out to 10+)
+## Commands
 
-| Prompt | Category | Target | Command? |
-|--------|----------|--------|----------|
-| `review-pr.md` | review | `app/src/money.ts` | — (example provided) |
-| `add-tests.md` | tests | `app/src/money.ts` | ✅ `/add-tests` (your job) |
-| _… docs …_ | docs | `app/src/money.ts` | |
-| _… refactor …_ | refactor | `app/src/money.ts` | |
-| _… debug …_ | debug | a stack trace / log | |
+Promoted to `.cursor/commands/`; pass the target file as the argument:
+`/add-tests app/src/money.ts` · `/review-security app/src/money.ts`
 
-Cover at least: **tests, review, docs, refactoring, debug**. Include **one**
-prompt in both dialects (markdown + XML). See `docs/walkthrough.md` for the full
-checklist.
+## Index
+
+| Prompt | Category | Target | Dialects | Verified | Command |
+|--------|----------|--------|----------|----------|---------|
+| `add-tests.md` | tests | `app/src/money.ts` | md | yes | `/add-tests` |
+| `add-regression-test.md` | tests | `app/src/money.ts` → `money.test.ts` | md | yes | — |
+| `review-pr.md` | review | `app/src/money.ts` | md+XML | yes | — |
+| `review-security.md` | review | `app/src/money.ts` | md | yes | `/review-security` |
+| `write-jsdoc.md` | docs | `app/src/money.ts` | md | yes | — |
+| `update-readme.md` | docs | `app/README.md` | md | yes | — |
+| `refactor-readability.md` | refactor | `parseAmount` in `app/src/money.ts` | md | yes | — |
+| `refactor-extract-guards.md` | refactor | `app/src/money.ts` | md | stopped-by-rule | — |
+| `fix-bug.md` | debug | `app/src/money.ts` | md+XML | yes (first run stopped-by-rule, then split) | — |
+| `explain-stack-trace.md` | debug | a stack trace / log (`money.ts`) | md | yes | — |
+| `triage-it-fails.md` | debug | `app/src/money.test.ts` | md | yes | — |
+
+Covers **tests, review, docs, refactoring, debug**; `review-pr.md` and
+`fix-bug.md` ship both dialects (markdown + XML). See `docs/walkthrough.md` for
+the full checklist.
 
 ## Safety
 
