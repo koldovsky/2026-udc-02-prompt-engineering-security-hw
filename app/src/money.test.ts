@@ -94,18 +94,19 @@ describe("splitEvenly", () => {
     expect(splitEvenly(0, 3)).toEqual([0, 0, 0]);
   });
 
-  // BUG: shares of a non-divisible total must sum to that total and differ by at most 1
-  it.fails("distributes a non-divisible positive total across the shares", () => {
+  it("distributes a non-divisible positive total across the shares", () => {
     expectFairSplit(100, 3);
   });
 
-  // BUG: shares of a negative total must sum to that total and differ by at most 1
-  it.fails("distributes a negative total across the shares", () => {
+  it("distributes a negative total across the shares", () => {
     expectFairSplit(-100, 3);
   });
 
-  // BUG: n < 1 is invalid and must throw
-  it.fails("throws when n is 0", () => {
+  it("splits a single cent into three integer shares summing to 1", () => {
+    expectFairSplit(1, 3);
+  });
+
+  it("throws when n is 0", () => {
     expect(() => splitEvenly(100, 0)).toThrow();
   });
 
@@ -139,18 +140,15 @@ describe("applyDiscount", () => {
     expect(applyDiscount(-100, 50)).toBe(-50);
   });
 
-  // BUG: a percent below 0 is invalid and must throw
-  it.fails("throws when percent is below 0", () => {
+  it("throws when percent is below 0", () => {
     expect(() => applyDiscount(10000, -1)).toThrow();
   });
 
-  // BUG: a percent above 100 is invalid and must throw
-  it.fails("throws when percent is above 100", () => {
+  it("throws when percent is above 100", () => {
     expect(() => applyDiscount(10000, 101)).toThrow();
   });
 
-  // BUG: a non-finite percent is invalid and must throw
-  it.fails("throws when percent is not finite", () => {
+  it("throws when percent is not finite", () => {
     expect(() => applyDiscount(10000, Number.NaN)).toThrow();
     expect(() => applyDiscount(10000, Number.POSITIVE_INFINITY)).toThrow();
     expect(() => applyDiscount(10000, Number.NEGATIVE_INFINITY)).toThrow();
